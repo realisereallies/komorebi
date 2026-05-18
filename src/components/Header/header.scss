@@ -35,6 +35,9 @@
 }
 
 .header__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
   flex-shrink: 0;
   font-family: 'Cormorant Garamond', 'Noto Sans JP', georgia, serif;
   font-size: clamp(1.0625rem, 1.8vw, 1.25rem);
@@ -53,6 +56,24 @@
     outline-offset: 6px;
     border-radius: 1px;
   }
+}
+
+.header__logo {
+  flex-shrink: 0;
+  height: 1.42em;
+  width: auto;
+  max-height: 1.75rem;
+  object-fit: contain;
+  opacity: 0.88;
+  transition: opacity 380ms ease;
+
+  .header__brand:hover & {
+    opacity: 0.96;
+  }
+}
+
+.header__brandText {
+  line-height: 1;
 }
 
 .header__nav ul {

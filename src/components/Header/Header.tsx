@@ -15,7 +15,13 @@ export function Header() {
     <header className="header" role="banner">
       <div className="header__inner">
         <Link className="header__brand" to="/">
-          Komorebi
+          <img
+            className="header__logo"
+            src="/img/logo.png"
+            alt=""
+            decoding="async"
+          />
+          <span className="header__brandText">Komorebi</span>
         </Link>
         <nav className="header__nav" aria-label="Primary">
           <ul>

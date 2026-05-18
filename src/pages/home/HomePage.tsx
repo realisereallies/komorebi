@@ -1,10 +1,10 @@
 import { AtmosphereGallerySection } from './sections/AtmosphereGallerySection'
 import { BookingCTASection } from './sections/BookingCTASection'
+import { GuestVoicesSection } from './sections/GuestVoicesSection'
 import { HeroSection } from './sections/HeroSection'
 import { PhilosophySection } from './sections/PhilosophySection'
 import { RitualsSection } from './sections/RitualsSection'
 import { TeaCollectionSection } from './sections/TeaCollectionSection'
-import { TestimonialsSection } from './sections/TestimonialsSection'
 
 export function HomePage() {
   return (
@@ -13,8 +13,8 @@ export function HomePage() {
       <PhilosophySection />
       <TeaCollectionSection />
       <RitualsSection />
+      <GuestVoicesSection />
       <AtmosphereGallerySection />
-      <TestimonialsSection />
       <BookingCTASection />
     </>
   )

@@ -26,7 +26,13 @@ export function Footer() {
       <div className="footer__shell">
         <div className="footer__intro">
           <Link to="/" className="footer__wordmark">
-            Komorebi
+            <img
+              className="footer__logo"
+              src="/img/logo.png"
+              alt=""
+              decoding="async"
+            />
+            <span className="footer__wordmarkText">Komorebi</span>
           </Link>
           <span className="footer__subtitle">Tea House</span>
           <p className="footer__whisper">
