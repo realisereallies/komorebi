@@ -2,31 +2,102 @@
 @use './variables' as *;
 @use './mixins' as mixins;
 
+/* One continuous atmosphere: base gradient + soft vignette + film grain + smoke (see body). */
+$_site-master-gradient: linear-gradient(
+  180deg,
+
+  /* hero darkness */
+  #020202 0%,
+  #060504 6%,
+
+  /* deep honey espresso */
+  #120b07 16%,
+  #1a110b 26%,
+
+  /* dark tea green */
+  #111f18 38%,
+  #17261d 48%,
+
+  /* smoky green-black */
+  #111b16 58%,
+  #111713 68%,
+
+  /* warm dark honey brown */
+  #1c120b 82%,
+
+  /* footer darkness */
+  #0c0806 94%,
+  #050403 100%
+);
+$_site-vignette: radial-gradient(
+  ellipse 100% 85% at 50% 45%,
+  rgb(0 0 0 / 0%) 38%,
+  rgb(0 0 0 / 0.22) 100%
+);
+$_site-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.22'/%3E%3C/svg%3E");
+
 :root {
   --site-header-height: 4.25rem;
   color-scheme: light;
   font-family: $font-sans;
   color: $color-text;
-  background-color: $color-bg;
+  background-color: #020202;
+}
+
+html {
+  min-height: 100%;
+  background-color: #020202;
 }
 
 body {
+  min-height: 100%;
   font-family: $font-sans;
   color: $color-text;
-  background-color: $color-bg;
+  background-color: #020202;
+  background-image:
+    $_site-noise,
+    $_site-vignette,
+    linear-gradient(180deg, rgb(6 5 4 / 0.22) 0%, transparent 18%, transparent 82%, rgb(4 3 2 / 0.28) 100%),
+    url('/img/smoke.png'),
+    $_site-master-gradient;
+  background-size:
+    180px 180px,
+    100% 100%,
+    100% 100%,
+    cover,
+    100% 100%;
+  background-position:
+    0 0,
+    center,
+    center,
+    center 22%,
+    0 0;
+  background-repeat: repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+  background-attachment: fixed, fixed, fixed, fixed, scroll;
+  /* Smoke: screen reads a touch stronger on deep browns than soft-light */
+  background-blend-mode: overlay, normal, multiply, screen, normal;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    background-attachment: scroll, scroll, scroll, scroll, scroll;
+  }
 }
 
 #root {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: transparent;
 }
 
 main {
   flex: 1 1 auto;
 }
 
-main section:not(.page):not(.hero-section):not(.philosophy-section):not(.tea-collection-section) {
+main section:not(.page):not(.hero-section):not(.philosophy-section):not(.tea-collection-section):not(
+    .rituals-section
+  ):not(.atmosphere-gallery) {
   max-width: $content-max-width;
   margin-inline: auto;
   padding-block: $space-xl;
@@ -37,7 +108,9 @@ main section:not(.page):not(.hero-section):not(.philosophy-section):not(.tea-col
   }
 }
 
-main section:not(.hero-section):not(.tea-collection-section) h2 {
+main section:not(.hero-section):not(.tea-collection-section):not(.rituals-section):not(
+    .atmosphere-gallery
+  ) h2 {
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -57,7 +130,9 @@ main section:not(.hero-section) header h1 {
   margin-bottom: $space-md;
 }
 
-main section:not(.hero-section):not(.tea-collection-section) p {
+main section:not(.hero-section):not(.tea-collection-section):not(.rituals-section):not(
+    .atmosphere-gallery
+  ) p {
   max-width: 42rem;
 
   &:not(:last-child) {

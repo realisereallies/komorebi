@@ -1,6 +1,6 @@
 @use '../../../styles/mixins' as mixins;
 
-// Editorial philosophy — continuous dark field (seamless with hero #080706)
+// Editorial philosophy — tree silhouette only; atmosphere from global page background
 
 .philosophy-section__tree-bg {
   position: absolute;
@@ -8,38 +8,10 @@
   z-index: 1;
   pointer-events: none;
   opacity: 0.072;
-  /* Дерево + коричневая градация: глубина, тень у корня, без серого */
-  background-image:
-    linear-gradient(
-      148deg,
-      rgb(34 24 18 / 0.42) 0%,
-      rgb(22 16 12 / 0.14) 44%,
-      transparent 64%
-    ),
-    radial-gradient(
-      ellipse 72% 48% at 2% 96%,
-      rgb(55 36 26 / 0.36) 0%,
-      rgb(30 20 14 / 0.12) 48%,
-      transparent 62%
-    ),
-    linear-gradient(
-      to top,
-      rgb(26 18 13 / 0.42) 0%,
-      rgb(15 11 8 / 0.16) 32%,
-      transparent 54%
-    ),
-    url('../../../assets/images/tree.png');
+  background-image: url('../../../assets/images/tree.png');
   background-repeat: no-repeat;
-  background-position:
-    0 100%,
-    0 100%,
-    0 100%,
-    left bottom -100px;
-  background-size:
-    100% 100%,
-    100% 100%,
-    100% 100%,
-    auto 120%;
+  background-position: left bottom -100px;
+  background-size: auto 120%;
 }
 
 .philosophy-section {
@@ -52,59 +24,7 @@
   padding-block-start: clamp(4.25rem, 11vw, 9rem);
   padding-block-end: clamp(2.125rem, 5.5vw, 4.5rem);
   padding-inline: 0;
-  /* Верх — стык с hero; низ — только глубокий тёплый тёмный (без серо-бежевого пятна) */
-  background-color: #080706;
-  background-image: linear-gradient(
-    to bottom,
-    #080706 0%,
-    #080706 min(28vh, 24%),
-    #0b0908 32%,
-    #120d0a 42%,
-    #1a120d 50%,
-    #14100d 58%,
-    #120d0a 68%,
-    #0f0b09 78%,
-    #0b0908 90%,
-    #080706 100%
-  );
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 3;
-    pointer-events: none;
-    opacity: 0.032;
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.45'/%3E%3C/svg%3E");
-    background-repeat: repeat;
-    background-size: 160px 160px;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    /* Только тёплая тень: без светлого glow, узкий spread, низ — погружение в #080706 */
-    background-image:
-      radial-gradient(
-        ellipse 52% 34% at 58% 40%,
-        rgb(26 18 13 / 0.14),
-        transparent 58%
-      ),
-      linear-gradient(
-        to bottom,
-        transparent 0%,
-        transparent 52%,
-        rgb(11 9 8 / 0.22) 82%,
-        #080706 100%
-      );
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
+  background: transparent;
 }
 
 .philosophy-section__inner {

@@ -1,6 +1,6 @@
 @use '../../../styles/mixins' as mixins;
 
-// Minimal luxury hero — image leads, type whispers
+// Minimal luxury hero — photograph as full-bleed media; page atmosphere from global body background
 
 .hero-section {
   position: relative;
@@ -12,59 +12,39 @@
   justify-content: flex-start;
   overflow: hidden;
   color: rgba(210, 206, 200, 0.75);
-  background-color: #141210;
-  background-image: url('/img/hero-background.jpg');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-
-  /* Lighter wash so the photograph stays the hero */
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    background:
-      linear-gradient(
-        102deg,
-        rgba(10, 9, 8, 0.58) 0%,
-        rgba(18, 16, 14, 0.32) 48%,
-        rgba(24, 22, 20, 0.12) 72%,
-        rgba(12, 10, 9, 0.28) 100%
-      ),
-      radial-gradient(
-        ellipse 100% 85% at 88% 40%,
-        rgba(72, 48, 34, 0.06),
-        transparent 65%
-      ),
-      radial-gradient(
-        circle at 14% 95%,
-        rgba(10, 9, 8, 0.38),
-        transparent 58%
-      );
-  }
+  background: transparent;
 }
 
-/* Single bottom veil: transparent → #080706 (matches philosophy; keep very soft) */
-.hero-section__bottom-fade {
+.hero-section__media {
   position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;
+  background-color: #0a0908;
+  background-image: url('/img/hero-background.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
   background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    transparent 66%,
-    rgba(8, 7, 6, 0.42) 90%,
-    #080706 99%,
-    #080706 100%
+    102deg,
+    rgba(8, 7, 6, 0.55) 0%,
+    rgba(14, 12, 10, 0.28) 48%,
+    rgba(20, 18, 16, 0.1) 72%,
+    rgba(10, 9, 8, 0.26) 100%
   );
 }
 
 .hero-section__inner {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

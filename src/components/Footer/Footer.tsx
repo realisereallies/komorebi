@@ -21,15 +21,7 @@ export function Footer() {
 
   return (
     <footer className="footer" role="contentinfo">
-      <div className="footer__canvas" aria-hidden="true">
-        <div className="footer__gradient" />
-        <div className="footer__vignette" />
-        <div className="footer__edgeWash" />
-        <div className="footer__bloom footer__bloom--primary" />
-        <div className="footer__bloom footer__bloom--secondary" />
-        <div className="footer__noise" />
-        <div className="footer__divider" />
-      </div>
+      <div className="footer__divider" aria-hidden="true" />
 
       <div className="footer__shell">
         <div className="footer__intro">

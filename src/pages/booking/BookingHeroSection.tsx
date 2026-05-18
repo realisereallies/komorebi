@@ -9,7 +9,6 @@ export function BookingHeroSection() {
       aria-labelledby="booking-heading"
     >
       <div className="hero-section__media" aria-hidden="true" />
-      <div className="hero-section__bottom-fade" aria-hidden="true" />
       <div className="hero-section__inner">
         <div className="hero-section__content hero-section__content--booking">
           <p className="hero-section__eyebrow">Japanese Tea Retreat</p>

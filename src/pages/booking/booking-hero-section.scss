@@ -17,6 +17,7 @@
     inset: -12px;
     z-index: 0;
     pointer-events: none;
+    background-color: #0a0908;
     background-image: url('/img/hero-background.jpg');
     background-position: center;
     background-size: cover;
@@ -30,12 +31,8 @@
     z-index: 1;
   }
 
-  .hero-section__bottom-fade {
-    z-index: 2;
-  }
-
   .hero-section__inner {
-    z-index: 3;
+    z-index: 2;
     box-sizing: border-box;
     justify-content: flex-start;
     padding-block: calc(var(--site-header-height) + 0.85rem) 0.65rem;

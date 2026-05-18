@@ -5,7 +5,7 @@ import './hero-section.scss'
 export function HeroSection() {
   return (
     <section className="hero-section" aria-labelledby="hero-heading">
-      <div className="hero-section__bottom-fade" aria-hidden="true" />
+      <div className="hero-section__media" aria-hidden="true" />
       <div className="hero-section__inner">
         <div className="hero-section__content">
           <p className="hero-section__eyebrow">Japanese Tea Retreat</p>

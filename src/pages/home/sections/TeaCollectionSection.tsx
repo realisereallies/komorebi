@@ -9,9 +9,6 @@ const teaRitualImg = '/img/tea-ritual.avif'
 export function TeaCollectionSection() {
   return (
     <section className="tea-collection-section" aria-labelledby="tea-collection-heading">
-      <div className="tea-collection-section__atmosphere" aria-hidden="true" />
-      <div className="tea-collection-section__grain" aria-hidden="true" />
-
       <div className="tea-collection-section__inner">
         <div className="tea-collection-section__layout">
           <div className="tea-collection-section__copy">
