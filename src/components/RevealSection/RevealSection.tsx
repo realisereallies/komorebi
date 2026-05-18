@@ -1,4 +1,6 @@
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
+
+import { useSimplifiedMotion } from '@/hooks/useSimplifiedMotion'
 import type { HTMLMotionProps, MotionProps } from 'framer-motion'
 import type { ReactNode } from 'react'
 
@@ -25,10 +27,10 @@ type RevealItemProps = {
 } & Omit<HTMLMotionProps<'div'>, 'children' | 'variants' | 'transition'>
 
 export function RevealItem({ as = 'div', children, ...rest }: RevealItemProps) {
-  const reduceMotion = useReducedMotion()
+  const simplifiedMotion = useSimplifiedMotion()
   const MotionEl = motionItemMap[as]
   return (
-    <MotionEl variants={revealItemVariants} transition={revealItemTransition(!!reduceMotion)} {...rest}>
+    <MotionEl variants={revealItemVariants} transition={revealItemTransition(!!simplifiedMotion)} {...rest}>
       {children}
     </MotionEl>
   )
@@ -41,12 +43,12 @@ type RevealStaggerProps = {
 }
 
 export function RevealStagger({ children, className, viewport }: RevealStaggerProps) {
-  const reduceMotion = useReducedMotion()
+  const simplifiedMotion = useSimplifiedMotion()
   return (
     <motion.div
       className={className}
-      variants={staggerContainerVariants(!!reduceMotion)}
-      initial={reduceMotion ? 'visible' : 'hidden'}
+      variants={staggerContainerVariants(!!simplifiedMotion)}
+      initial={simplifiedMotion ? 'visible' : 'hidden'}
       whileInView="visible"
       viewport={viewport ?? revealViewport}
     >
@@ -62,15 +64,15 @@ type RevealSectionProps = {
 }
 
 export function RevealSection({ children, className, viewport }: RevealSectionProps) {
-  const reduceMotion = useReducedMotion()
+  const simplifiedMotion = useSimplifiedMotion()
   return (
     <motion.div
       className={className}
       variants={revealItemVariants}
-      initial={reduceMotion ? 'visible' : 'hidden'}
+      initial={simplifiedMotion ? 'visible' : 'hidden'}
       whileInView="visible"
       viewport={viewport ?? revealViewport}
-      transition={revealItemTransition(!!reduceMotion)}
+      transition={revealItemTransition(!!simplifiedMotion)}
     >
       {children}
     </motion.div>

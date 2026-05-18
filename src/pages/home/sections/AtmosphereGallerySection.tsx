@@ -1,4 +1,6 @@
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
+
+import { useSimplifiedMotion } from '@/hooks/useSimplifiedMotion'
 
 import { revealNestedContainerVariants } from '@/components/RevealSection/revealMotion'
 import { RevealItem, RevealStagger } from '@/components/RevealSection/RevealSection'
@@ -15,7 +17,7 @@ const GALLERY_ITEMS = [
 ] as const
 
 export function AtmosphereGallerySection() {
-  const reduceMotion = useReducedMotion()
+  const simplifiedMotion = useSimplifiedMotion()
   return (
     <section
       className="atmosphere-gallery"
@@ -35,7 +37,7 @@ export function AtmosphereGallerySection() {
           className="atmosphere-gallery__collage"
           role="group"
           aria-label="Atmospheric gallery images"
-          variants={revealNestedContainerVariants(!!reduceMotion)}
+          variants={revealNestedContainerVariants(!!simplifiedMotion)}
         >
           {GALLERY_ITEMS.map(({ key, label, variant, src }) => (
             <RevealItem

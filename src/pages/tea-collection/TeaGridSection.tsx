@@ -1,4 +1,6 @@
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
+
+import { useSimplifiedMotion } from '@/hooks/useSimplifiedMotion'
 
 import { revealNestedContainerVariants } from '@/components/RevealSection/revealMotion'
 import { RevealItem } from '@/components/RevealSection/RevealSection'
@@ -32,15 +34,15 @@ const teas = [
 ] as const
 
 export function TeaGridSection() {
-  const reduceMotion = useReducedMotion()
+  const simplifiedMotion = useSimplifiedMotion()
 
   return (
     <section className="tea-archive-section tea-archive-grid" aria-label="Tea archive">
       <motion.div
         className="tea-archive__list"
         role="list"
-        variants={revealNestedContainerVariants(!!reduceMotion)}
-        initial={reduceMotion ? 'visible' : 'hidden'}
+        variants={revealNestedContainerVariants(!!simplifiedMotion)}
+        initial={simplifiedMotion ? 'visible' : 'hidden'}
         whileInView="visible"
         viewport={{ once: true, amount: 0.1, margin: '0px 0px -10% 0px' }}
       >

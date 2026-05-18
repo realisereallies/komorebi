@@ -52,12 +52,13 @@
   max-width: 64rem;
   min-height: inherit;
   margin-inline: auto;
-  padding-block: calc(var(--site-header-height) + 2.25rem) 4rem;
-  padding-inline: clamp(1.5rem, 5vw, 3rem);
+  padding-block: calc(var(--site-header-height) + 1.65rem) clamp(2.5rem, 8vw, 4rem);
+  padding-inline: clamp(1rem, 4vw, 3rem);
 }
 
 .hero-section__content {
   max-width: 22rem;
+  min-width: 0;
 }
 
 .hero-section__eyebrow {
@@ -77,6 +78,8 @@
   line-height: 1.06;
   letter-spacing: -0.02em;
   color: rgba(228, 224, 218, 0.82);
+  text-wrap: balance;
+  overflow-wrap: anywhere;
 }
 
 .hero-section__title-line {
@@ -97,8 +100,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 2.4rem;
-  padding: 0.45rem 1.65rem;
+  min-height: 2.75rem;
+  padding: 0.55rem 1.5rem;
   font-size: 0.5625rem;
   font-weight: 500;
   letter-spacing: 0.24em;

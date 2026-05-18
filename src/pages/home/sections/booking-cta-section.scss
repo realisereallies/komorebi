@@ -346,6 +346,55 @@
   }
 }
 
+@media (width < 48rem) {
+  .booking-cta-section {
+    min-height: clamp(17rem, 48vh, 30rem);
+    padding-block: clamp(1.15rem, 4vw, 2.25rem) clamp(4rem, 15vw, 7rem);
+  }
+
+  .booking-cta-section__lantern {
+    display: none;
+  }
+
+  .booking-cta-section__vignette {
+    opacity: 0.55;
+  }
+
+  .booking-cta-section__grain {
+    opacity: 0.04;
+  }
+
+  .booking-cta-section__smoke {
+    animation: none;
+    opacity: 0.12;
+    filter: saturate(1) brightness(1);
+  }
+
+  .booking-cta-section__mote {
+    animation: none;
+    opacity: 0.35;
+  }
+
+  .booking-cta-section__content {
+    translate: 0 0;
+  }
+
+  .booking-cta-section__title {
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+  }
+
+  .booking-cta-section__cta {
+    width: 100%;
+  }
+
+  .booking-cta-section__btn {
+    width: 100%;
+    max-width: 22rem;
+    min-height: 2.85rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .booking-cta-section__smoke {
     animation: none;

@@ -1,4 +1,6 @@
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
+
+import { useSimplifiedMotion } from '@/hooks/useSimplifiedMotion'
 import { Link } from 'react-router-dom'
 
 import { revealNestedContainerVariants } from '@/components/RevealSection/revealMotion'
@@ -35,7 +37,7 @@ const ritualScenes = [
 ] as const
 
 export function RitualsSection() {
-  const reduceMotion = useReducedMotion()
+  const simplifiedMotion = useSimplifiedMotion()
   return (
     <section className="rituals-section" aria-labelledby="rituals-heading">
       <TeaRitualsDivider />
@@ -58,7 +60,7 @@ export function RitualsSection() {
         <motion.div
           className="rituals-section__grid"
           role="list"
-          variants={revealNestedContainerVariants(!!reduceMotion)}
+          variants={revealNestedContainerVariants(!!simplifiedMotion)}
         >
           {ritualScenes.map((scene) => (
             <RevealItem key={scene.id} as="article" className="rituals-card" role="listitem">

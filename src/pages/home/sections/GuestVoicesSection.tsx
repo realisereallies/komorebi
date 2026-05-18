@@ -1,4 +1,6 @@
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
+
+import { useSimplifiedMotion } from '@/hooks/useSimplifiedMotion'
 
 import { revealNestedContainerVariants } from '@/components/RevealSection/revealMotion'
 import { RevealItem, RevealStagger } from '@/components/RevealSection/RevealSection'
@@ -25,7 +27,7 @@ const VOICES = [
 ] as const
 
 export function GuestVoicesSection() {
-  const reduceMotion = useReducedMotion()
+  const simplifiedMotion = useSimplifiedMotion()
   return (
     <section className="guest-voices-section" aria-labelledby="guest-voices-heading">
       <div className="guest-voices-section__inner">
@@ -44,7 +46,7 @@ export function GuestVoicesSection() {
           <motion.div
             className="guest-voices-section__cards"
             role="list"
-            variants={revealNestedContainerVariants(!!reduceMotion)}
+            variants={revealNestedContainerVariants(!!simplifiedMotion)}
           >
             {VOICES.map((voice) => (
               <RevealItem

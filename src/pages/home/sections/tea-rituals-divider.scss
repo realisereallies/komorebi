@@ -15,6 +15,10 @@
   pointer-events: none;
   background: none;
   opacity: 0.5;
+
+  @media (width < 48rem) {
+    opacity: 0.32;
+  }
 }
 
 .tea-rituals-divider__glow {
@@ -34,6 +38,11 @@
   );
   filter: blur(18px);
   opacity: 1;
+
+  @media (width < 48rem) {
+    filter: blur(12px);
+    height: clamp(2.5rem, 7vw, 4.5rem);
+  }
 }
 
 .tea-rituals-divider__row {

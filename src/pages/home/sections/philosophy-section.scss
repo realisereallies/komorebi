@@ -12,6 +12,10 @@
   background-repeat: no-repeat;
   background-position: left bottom -100px;
   background-size: auto 120%;
+
+  @media (width < 48rem) {
+    display: none;
+  }
 }
 
 .philosophy-section {
@@ -21,8 +25,8 @@
   width: 100%;
   max-width: none;
   margin-inline: 0;
-  padding-block-start: clamp(4.25rem, 11vw, 9rem);
-  padding-block-end: clamp(2.125rem, 5.5vw, 4.5rem);
+  padding-block-start: clamp(3.25rem, 10vw, 9rem);
+  padding-block-end: clamp(1.75rem, 5vw, 4.5rem);
   padding-inline: 0;
   background: transparent;
 }
@@ -79,6 +83,8 @@
   letter-spacing: -0.015em;
   color: rgb(238 232 220 / 0.93);
   text-shadow: 0 1px 36px rgb(0 0 0 / 0.35);
+  text-wrap: balance;
+  overflow-wrap: anywhere;
 }
 
 .philosophy-section__title-line {
@@ -116,6 +122,12 @@
     );
     filter: blur(48px);
     opacity: 0.32;
+
+    @media (width < 48rem) {
+      filter: blur(28px);
+      opacity: 0.2;
+      inset: -12% -18% -12% -8%;
+    }
 
     @media (prefers-reduced-motion: reduce) {
       filter: blur(28px);

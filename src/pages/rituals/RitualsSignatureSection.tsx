@@ -1,4 +1,6 @@
-import { motion, type TargetAndTransition, useReducedMotion } from 'framer-motion'
+import { motion, type TargetAndTransition } from 'framer-motion'
+
+import { useSimplifiedMotion } from '@/hooks/useSimplifiedMotion'
 
 import { revealNestedContainerVariants } from '@/components/RevealSection/revealMotion'
 import { RevealItem, RevealStagger } from '@/components/RevealSection/RevealSection'
@@ -25,8 +27,8 @@ const rituals = [
 ] as const
 
 export function RitualsSignatureSection() {
-  const reduceMotion = useReducedMotion()
-  const hoverLift: TargetAndTransition | undefined = reduceMotion
+  const simplifiedMotion = useSimplifiedMotion()
+  const hoverLift: TargetAndTransition | undefined = simplifiedMotion
     ? undefined
     : { y: -3, transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] } }
 
@@ -41,7 +43,7 @@ export function RitualsSignatureSection() {
 
         <motion.div
           className="rituals-signature__list"
-          variants={revealNestedContainerVariants(!!reduceMotion)}
+          variants={revealNestedContainerVariants(!!simplifiedMotion)}
         >
           {rituals.map((ritual, index) => (
             <RevealItem

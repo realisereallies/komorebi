@@ -1,4 +1,6 @@
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
+
+import { useSimplifiedMotion } from '@/hooks/useSimplifiedMotion'
 import { Link } from 'react-router-dom'
 
 import { revealNestedContainerVariants } from '@/components/RevealSection/revealMotion'
@@ -7,7 +9,7 @@ import { RevealItem, RevealStagger } from '@/components/RevealSection/RevealSect
 import './hero-section.scss'
 
 export function HeroSection() {
-  const reduceMotion = useReducedMotion()
+  const simplifiedMotion = useSimplifiedMotion()
 
   return (
     <section className="hero-section" aria-labelledby="hero-heading">
@@ -20,7 +22,7 @@ export function HeroSection() {
           <motion.h1
             id="hero-heading"
             className="hero-section__title"
-            variants={revealNestedContainerVariants(!!reduceMotion)}
+            variants={revealNestedContainerVariants(!!simplifiedMotion)}
           >
             <RevealItem as="span" className="hero-section__title-line">
               Silence

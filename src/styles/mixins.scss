@@ -10,5 +10,23 @@
     @media (width >= 48rem) {
       @content;
     }
+  } @else if $breakpoint == lg {
+    @media (width >= 64rem) {
+      @content;
+    }
+  }
+}
+
+/** Phone / small screens — pairs with `useSimplifiedMotion` (max-width just under 48rem). */
+@mixin mobile {
+  @media (width < 48rem) {
+    @content;
+  }
+}
+
+/** Tablet range: layout still single-column in many sections, but room for tweaks. */
+@mixin tablet-only {
+  @media (width >= 48rem) and (width < 64rem) {
+    @content;
   }
 }

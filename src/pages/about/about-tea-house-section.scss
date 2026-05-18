@@ -638,3 +638,31 @@
   );
   box-shadow: inset 0 0 90px rgb(0 0 0 / 0.45);
 }
+
+@media (width < 48rem) {
+  .about-tea-house-section {
+    padding-block: clamp(3rem, 10vw, 8rem);
+  }
+
+  .about-tea-house-section__atelier-smoke--a,
+  .about-tea-house-section__atelier-smoke--b {
+    animation: none;
+    opacity: 0.12;
+  }
+
+  .about-tea-house-section__atelier-lantern {
+    animation: none;
+    opacity: 0.72;
+  }
+
+  .about-tea-house-section__depth {
+    filter: blur(22px);
+    inset: -4% -8% -6% -8%;
+  }
+
+  .about-tea-house-section__title {
+    font-size: clamp(2.05rem, 9vw, 2.65rem);
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+  }
+}

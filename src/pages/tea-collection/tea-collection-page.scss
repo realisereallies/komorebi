@@ -63,6 +63,13 @@ $_radius-card: clamp(28px, 2.75vw, 36px);
   }
 }
 
+@media (width < 48rem) {
+  .tea-collection-page__mote {
+    animation: none;
+    opacity: 0.38;
+  }
+}
+
 .tea-archive-section {
   position: relative;
   z-index: 1;
@@ -103,6 +110,14 @@ $_radius-card: clamp(28px, 2.75vw, 36px);
   letter-spacing: -0.028em;
   color: rgb(244 236 222 / 0.94);
   text-wrap: balance;
+}
+
+@media (width < 48rem) {
+  .tea-archive-hero__title {
+    font-size: clamp(2.35rem, 11vw, 3.15rem);
+    line-height: 1.02;
+    overflow-wrap: anywhere;
+  }
 }
 
 .tea-archive-hero__lede {
@@ -186,18 +201,26 @@ $_radius-card: clamp(28px, 2.75vw, 36px);
     transform 0.8s $_ease-cinematic,
     box-shadow 0.8s $_ease-cinematic;
 
-  &:hover {
-    transform: translateY(-6px) scale(1.014);
-    box-shadow:
-      0 0 0 1px rgb(72 62 54 / 0.22),
-      0 0 0 1px rgb(28 42 34 / 0.16) inset,
-      0 1px 0 rgb(140 128 110 / 0.09) inset,
-      0 52px 88px rgb(0 0 0 / 0.58),
-      0 26px 48px rgb(4 3 2 / 0.52),
-      0 0 clamp(56px, 9vw, 100px) rgb(52 72 58 / 0.42);
+  @media (width < 48rem) {
+    padding: clamp(1.15rem, 4vw, 2rem) clamp(1.15rem, 4vw, 2.15rem) clamp(1.2rem, 4vw, 2.35rem);
+    backdrop-filter: blur(12px) saturate(1.04);
+    -webkit-backdrop-filter: blur(12px) saturate(1.04);
+  }
 
-    @include mixins.mq(md) {
-      transform: translateY(-8px) scale(1.018);
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: translateY(-6px) scale(1.014);
+      box-shadow:
+        0 0 0 1px rgb(72 62 54 / 0.22),
+        0 0 0 1px rgb(28 42 34 / 0.16) inset,
+        0 1px 0 rgb(140 128 110 / 0.09) inset,
+        0 52px 88px rgb(0 0 0 / 0.58),
+        0 26px 48px rgb(4 3 2 / 0.52),
+        0 0 clamp(56px, 9vw, 100px) rgb(52 72 58 / 0.42);
+
+      @include mixins.mq(md) {
+        transform: translateY(-8px) scale(1.018);
+      }
     }
   }
 

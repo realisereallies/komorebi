@@ -118,6 +118,56 @@ $_serif: 'Cormorant Garamond', 'Noto Sans JP', georgia, serif;
   }
 }
 
+@media (width < 48rem) {
+  .rituals-page__haze {
+    animation: none;
+    opacity: 0.24;
+  }
+
+  .rituals-page__mote {
+    animation: none;
+    opacity: 0.28;
+  }
+
+  .rituals-editorial__smoke {
+    animation: none;
+  }
+
+  .rituals-hero {
+    min-height: unset;
+    padding-block: clamp(3.5rem, 11vh, 5.5rem) clamp(2.25rem, 9vh, 4rem);
+    padding-block-start: calc(var(--site-header-height, 4.25rem) + clamp(0.85rem, 3vh, 1.75rem));
+  }
+
+  .rituals-hero__title {
+    font-size: clamp(2rem, 10.5vw, 2.85rem);
+    overflow-wrap: anywhere;
+  }
+
+  .rituals-hero__lantern--a,
+  .rituals-hero__lantern--b {
+    filter: blur(32px);
+    opacity: 0.38;
+  }
+
+  .rituals-silence__quote {
+    max-width: min(18ch, 100%);
+    font-size: clamp(1.85rem, 9.5vw, 2.5rem);
+  }
+
+  .rituals-signature {
+    padding-block: clamp(2.25rem, 9vw, 5rem);
+  }
+
+  .rituals-flow {
+    padding-block: clamp(2.5rem, 10vw, 6rem);
+  }
+
+  .rituals-silence {
+    padding-block: clamp(2.75rem, 12vw, 8rem);
+  }
+}
+
 /* ——— Hero ——— */
 
 .rituals-hero {

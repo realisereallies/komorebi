@@ -7,13 +7,13 @@
   /* Protruding seam ornament: overflow-x:hidden + y:visible forces y→auto in browsers and clips the top */
   overflow: visible;
   width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  padding-block: clamp(3.25rem, 9vw, 6.25rem) clamp(3.75rem, 11vw, 7.25rem);
+  padding-block: clamp(2.5rem, 8vw, 6.25rem) clamp(2.75rem, 9vw, 7.25rem);
 
   @include mixins.mq(md) {
+    min-height: 100vh;
+    min-height: 100dvh;
     padding-block: 112px 160px 80px;
   }
 
@@ -65,6 +65,8 @@
   line-height: 1.24;
   letter-spacing: -0.012em;
   color: rgb(236 228 214 / 0.91);
+  overflow-wrap: anywhere;
+  text-wrap: balance;
 
   &::after {
     content: '';
@@ -97,6 +99,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-height: 2.75rem;
   padding: 0.55rem 0;
   font-size: 0.5625rem;
   font-weight: 500;
@@ -204,12 +207,14 @@
     saturate(0.66);
 }
 
-.rituals-card__frame:hover .rituals-card__media {
-  transform: scale(1.04);
-  filter:
-    brightness(0.84)
-    contrast(0.94)
-    saturate(0.7);
+@media (hover: hover) and (pointer: fine) {
+  .rituals-card__frame:hover .rituals-card__media {
+    transform: scale(1.04);
+    filter:
+      brightness(0.84)
+      contrast(0.94)
+      saturate(0.7);
+  }
 }
 
 .rituals-card__meta {
@@ -247,11 +252,13 @@
     transition: none;
   }
 
-  .rituals-card__frame:hover .rituals-card__media {
-    transform: scale(1.03);
-    filter:
-      brightness(0.78)
-      contrast(0.92)
-      saturate(0.66);
+  @media (hover: hover) {
+    .rituals-card__frame:hover .rituals-card__media {
+      transform: scale(1.03);
+      filter:
+        brightness(0.78)
+        contrast(0.92)
+        saturate(0.66);
+    }
   }
 }

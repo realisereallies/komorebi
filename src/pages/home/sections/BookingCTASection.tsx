@@ -1,5 +1,7 @@
 import { type CSSProperties } from 'react'
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
+
+import { useSimplifiedMotion } from '@/hooks/useSimplifiedMotion'
 import { Link } from 'react-router-dom'
 
 import { revealNestedContainerVariants } from '@/components/RevealSection/revealMotion'
@@ -10,7 +12,7 @@ import { playNavTapSound } from '@/utils/playNavTapSound'
 import './booking-cta-section.scss'
 
 export function BookingCTASection() {
-  const reduceMotion = useReducedMotion()
+  const simplifiedMotion = useSimplifiedMotion()
   return (
     <section className="booking-cta-section" aria-labelledby="booking-cta-heading">
       <span className="booking-cta-section__grain" aria-hidden="true" />
@@ -37,7 +39,7 @@ export function BookingCTASection() {
       <RevealStagger className="booking-cta-section__inner">
         <motion.div
           className="booking-cta-section__content"
-          variants={revealNestedContainerVariants(!!reduceMotion)}
+          variants={revealNestedContainerVariants(!!simplifiedMotion)}
         >
           <RevealItem>
             <hr className="booking-cta-section__divider" aria-hidden="true" />

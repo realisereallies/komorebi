@@ -296,12 +296,14 @@
   object-position: 50% 46%;
 }
 
-.tea-collection-section__tile-frame:hover .tea-collection-section__tile-media {
-  transform: scale(1.04);
-  filter:
-    brightness(0.82)
-    contrast(0.94)
-    saturate(0.67);
+@media (hover: hover) and (pointer: fine) {
+  .tea-collection-section__tile-frame:hover .tea-collection-section__tile-media {
+    transform: scale(1.04);
+    filter:
+      brightness(0.82)
+      contrast(0.94)
+      saturate(0.67);
+  }
 }
 
 @media (width < 48rem) {
@@ -322,7 +324,7 @@
   .tea-collection-section__tile--pillar .tea-collection-section__tile-frame {
     aspect-ratio: 5 / 6;
     min-height: unset;
-    max-height: min(62vh, 29rem);
+    max-height: min(52vh, 24rem);
   }
 
   .tea-collection-section__satellites {
@@ -334,30 +336,32 @@
      * Light editorial offset keeps the pairing from collapsing into centered cards
      */
 
-    align-self: flex-start;
+    align-self: stretch;
 
     /*
      * Full bleed under the narrower leaves card for a wide cinematic band
      */
 
     width: 100%;
-    max-width: min(26rem, 100%);
-    margin-inline-start: clamp(1.5rem, 11vw, 4.25rem);
+    max-width: none;
+    margin-inline-start: 0;
+    padding-inline: 0;
   }
 
   .tea-collection-section__tile--ritual {
     align-self: flex-start;
-    width: min(74%, 16rem);
+    width: min(88%, 17.5rem);
+    margin-inline: 0;
 
     .tea-collection-section__tile-frame {
       aspect-ratio: 4 / 5;
-      max-block-size: clamp(13rem, 44vw, 16rem);
+      max-block-size: clamp(11.5rem, 42vw, 15rem);
     }
   }
 
   .tea-collection-section__tile--cups .tea-collection-section__tile-frame {
     aspect-ratio: 16 / 9;
-    max-block-size: clamp(11rem, 38vw, 14rem);
+    max-block-size: clamp(9.5rem, 36vw, 12.5rem);
   }
 
   .tea-collection-section__tile--cups {
@@ -365,7 +369,7 @@
      * Stagger the horizon line under the tighter portrait frame
      */
 
-    margin-inline-start: clamp(12%, 20vw, 5.25rem);
+    margin-inline-start: clamp(0.75rem, 6vw, 2.5rem);
     align-self: stretch;
 
     /*
@@ -373,8 +377,18 @@
      */
 
     width: auto;
-    max-width: calc(100% - clamp(0rem, 2vw, 1.25rem));
-    margin-inline-end: clamp(0rem, 2vw, 1.75rem);
+    max-width: 100%;
+    margin-inline-end: 0;
+  }
+
+  .tea-collection-section__tile-frame {
+    border-radius: clamp(18px, 5vw, 24px);
+  }
+
+  .tea-collection-section__title,
+  .tea-collection-section__lead {
+    overflow-wrap: anywhere;
+    text-wrap: balance;
   }
 }
 
@@ -384,12 +398,14 @@
     transition: none;
   }
 
-  .tea-collection-section__tile-frame:hover .tea-collection-section__tile-media {
-    transform: scale(1.03);
-    filter:
-      brightness(0.76)
-      contrast(0.92)
-      saturate(0.64);
+  @media (hover: hover) {
+    .tea-collection-section__tile-frame:hover .tea-collection-section__tile-media {
+      transform: scale(1.03);
+      filter:
+        brightness(0.76)
+        contrast(0.92)
+        saturate(0.64);
+    }
   }
 
   .tea-collection-section__ghost {

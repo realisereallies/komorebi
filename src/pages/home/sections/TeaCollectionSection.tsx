@@ -1,4 +1,6 @@
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
+
+import { useSimplifiedMotion } from '@/hooks/useSimplifiedMotion'
 import { Link } from 'react-router-dom'
 
 import { revealNestedContainerVariants } from '@/components/RevealSection/revealMotion'
@@ -11,7 +13,7 @@ const cupsImg = '/img/cups.webp'
 const teaRitualImg = '/img/tea-ritual.avif'
 
 export function TeaCollectionSection() {
-  const reduceMotion = useReducedMotion()
+  const simplifiedMotion = useSimplifiedMotion()
   return (
     <section className="tea-collection-section" aria-labelledby="tea-collection-heading">
       <div className="tea-collection-section__inner">
@@ -37,7 +39,7 @@ export function TeaCollectionSection() {
             className="tea-collection-section__mosaic"
             role="group"
             aria-label="Tea collection visuals"
-            variants={revealNestedContainerVariants(!!reduceMotion)}
+            variants={revealNestedContainerVariants(!!simplifiedMotion)}
           >
             <RevealItem
               as="figure"
