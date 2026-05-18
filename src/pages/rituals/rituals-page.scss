@@ -1,0 +1,559 @@
+@use '../../styles/mixins' as mixins;
+
+$_ease-cinematic: cubic-bezier(0.22, 1, 0.36, 1);
+$_sans: system-ui, -apple-system, 'Segoe UI', roboto, 'Helvetica Neue', arial, sans-serif;
+$_serif: 'Cormorant Garamond', 'Noto Sans JP', georgia, serif;
+
+@keyframes rituals-firefly-rise {
+  0% {
+    transform: translate3d(0, 12px, 0);
+    opacity: 0;
+  }
+  14% {
+    opacity: 0.48;
+  }
+  100% {
+    transform: translate3d(0, -40px, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes rituals-page-smoke-shift {
+  0%,
+  100% {
+    transform: translate3d(-1.5%, 0, 0) scale(1.02);
+    opacity: 0.48;
+  }
+  50% {
+    transform: translate3d(2%, -1%, 0) scale(1.06);
+    opacity: 0.64;
+  }
+}
+
+@keyframes rituals-editorial-smoke {
+  0%,
+  100% {
+    background-position: center 52%, center 62%;
+    opacity: 0.32;
+  }
+  50% {
+    background-position: center 48%, center 58%;
+    opacity: 0.44;
+  }
+}
+
+.rituals-page {
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
+  overflow: clip;
+  color: rgb(174 164 146 / 0.72);
+  background-color: transparent;
+  background-image: linear-gradient(
+    180deg,
+    rgb(0 0 0 / 0.88) 0%,
+    rgb(10 16 13 / 0.68) 12%,
+    rgb(26 38 31 / 0.55) 32%,
+    rgb(42 62 52 / 0.52) 48%,
+    rgb(18 16 13 / 0.62) 70%,
+    rgb(26 58 72 / 0.52) 100%
+  );
+}
+
+.rituals-page__haze {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(
+      102deg,
+      rgb(238 218 182 / 0%) 0%,
+      rgb(208 174 146 / 0.07) 45%,
+      rgb(226 236 226 / 0.055) 55%,
+      rgb(246 226 178 / 0%) 100%
+    ),
+    url('/img/smoke.png');
+  background-size:
+    100% 100%,
+    cover;
+  background-position:
+    center 44%,
+    center 52%;
+  background-repeat: no-repeat;
+  mix-blend-mode: screen;
+  opacity: 0.36;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .rituals-page__haze {
+    animation: rituals-page-smoke-shift 28s $_ease-cinematic infinite;
+  }
+}
+
+.rituals-page__motes {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.rituals-page__mote {
+  position: absolute;
+  width: var(--tea-mote-size, 3.25px);
+  height: var(--tea-mote-size, 3.25px);
+  border-radius: 9999px;
+  background: radial-gradient(circle at 35% 35%, rgb(255 251 242 / 0.58), rgb(236 218 188 / 0.26) 48%, transparent 76%);
+  box-shadow:
+    0 0 10px rgb(242 226 204 / 0.26),
+    0 0 4px rgb(234 214 182 / 0.32),
+    0 0 2px rgb(248 238 218 / 0.42);
+  opacity: 0.42;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .rituals-page__mote {
+    animation: rituals-firefly-rise 16s linear infinite;
+    animation-delay: var(--tea-mote-delay, 0s);
+  }
+}
+
+/* ——— Hero ——— */
+
+.rituals-hero {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  min-height: min(92vh, 52rem);
+  display: grid;
+  align-items: center;
+  padding-inline: clamp(1.25rem, 5vw, 3.75rem);
+  padding-block: clamp(5rem, 14vh, 8.5rem) clamp(4rem, 12vh, 7rem);
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  padding-block-start: clamp(6.25rem, 18vh, 9.5rem);
+}
+
+.rituals-hero__ambient {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.rituals-hero__lantern {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(42px);
+  mix-blend-mode: screen;
+  opacity: 0.55;
+
+  @include mixins.mq(md) {
+    opacity: 0.62;
+  }
+}
+
+.rituals-hero__lantern--a {
+  width: min(92vw, 28rem);
+  height: min(92vw, 28rem);
+  left: clamp(-6rem, -8vw, -2rem);
+  top: 18%;
+  background: radial-gradient(
+    circle at 46% 44%,
+    rgb(246 218 174 / 0.28) 0%,
+    rgb(218 174 136 / 0.12) 38%,
+    transparent 72%
+  );
+}
+
+.rituals-hero__lantern--b {
+  width: min(70vw, 18rem);
+  height: min(70vw, 18rem);
+  right: clamp(-4rem, -4vw, 0rem);
+  bottom: clamp(14%, 24vh, 32%);
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgb(180 218 178 / 0.12) 0%,
+    rgb(120 160 146 / 0.06) 42%,
+    transparent 70%
+  );
+  filter: blur(48px);
+  opacity: 0.45;
+}
+
+.rituals-hero__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 118% 100% at 42% 40%,
+    rgb(4 10 14 / 0%) 58%,
+    rgb(10 26 42 / 0.22) 100%
+  );
+  opacity: 0.92;
+}
+
+.rituals-hero__inner {
+  position: relative;
+  z-index: 2;
+  max-width: min(52rem, 100%);
+}
+
+.rituals-hero__eyebrow {
+  margin: 0 0 clamp(1.05rem, 2.4vw, 1.5rem);
+  font-family: $_sans;
+  font-size: 0.5625rem;
+  font-weight: 500;
+  letter-spacing: 0.48em;
+  text-transform: uppercase;
+  color: rgb(168 154 138 / 0.44);
+}
+
+.rituals-hero__title {
+  margin: 0;
+  max-width: min(42rem, 100%);
+  font-family: $_serif;
+  font-weight: 400;
+  font-size: clamp(2.75rem, 7.25vw, 5.85rem);
+  line-height: 1;
+  letter-spacing: -0.034em;
+  color: rgb(244 238 226 / 0.94);
+  text-wrap: balance;
+  text-shadow: 0 0 48px rgb(36 62 74 / 0.14);
+}
+
+.rituals-hero__lede {
+  margin: clamp(1.85rem, 4vw, 2.85rem) 0 0;
+  max-width: 38rem;
+  font-family: $_sans;
+  font-size: clamp(1rem, 1.52vw, 1.165rem);
+  line-height: 1.76;
+  font-weight: 400;
+  color: rgb(150 138 118 / 0.58);
+}
+
+/* ——— Signature ——— */
+
+.rituals-signature {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: min(92rem, 100%);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 3.75rem);
+  padding-block: clamp(3rem, 11vw, 7.25rem);
+}
+
+.rituals-signature__intro {
+  margin-bottom: clamp(2.65rem, 8vw, 4.85rem);
+  text-align: center;
+}
+
+.rituals-signature__title {
+  margin: 0;
+  font-family: $_serif;
+  font-weight: 400;
+  font-size: clamp(2rem, 4.2vw, 3.05rem);
+  letter-spacing: 0.04em;
+  color: rgb(232 226 216 / 0.88);
+}
+
+.rituals-signature__list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3.85rem, 12vw, 7.75rem);
+}
+
+.rituals-editorial {
+  position: relative;
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 2.75rem);
+
+  @include mixins.mq(md) {
+    grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
+    align-items: stretch;
+    column-gap: clamp(1.5rem, 3.5vw, 3rem);
+    min-height: clamp(15rem, 28vw, 22rem);
+
+    &.rituals-editorial--reverse .rituals-editorial__visual {
+      order: 2;
+    }
+
+    &.rituals-editorial--reverse .rituals-editorial__copy {
+      order: 1;
+      text-align: right;
+      align-items: flex-end;
+      margin-inline-start: auto;
+      margin-inline-end: 0;
+    }
+  }
+}
+
+.rituals-editorial__visual {
+  position: relative;
+  min-height: clamp(13.5rem, 52vw, 19.5rem);
+  overflow: hidden;
+  isolation: isolate;
+  clip-path: inset(2px round 2px);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    z-index: 3;
+    box-shadow:
+      inset 0 1px 0 rgb(246 226 206 / 0.05),
+      inset 0 -1px 0 rgb(0 0 0 / 0.52);
+    pointer-events: none;
+    border-radius: 1px;
+  }
+}
+
+.rituals-editorial__blur {
+  position: absolute;
+  inset: -35%;
+  z-index: 1;
+  background: radial-gradient(
+    ellipse 55% 50% at 48% 38%,
+    rgb(246 226 206 / 0.14) 0%,
+    transparent 58%
+  );
+  filter: blur(36px);
+  transform: rotate(-4deg);
+  opacity: 0.55;
+}
+
+.rituals-editorial__smoke {
+  position: absolute;
+  inset: -14%;
+  z-index: 2;
+  background-image:
+    linear-gradient(
+      95deg,
+      rgb(240 226 206 / 0%) 0%,
+      rgb(208 174 146 / 0.05) 50%,
+      rgb(232 240 238 / 0%) 100%
+    ),
+    url('/img/smoke.png');
+  background-position:
+    center,
+    center 58%;
+  background-size:
+    100%,
+    cover;
+  background-repeat: no-repeat;
+  mix-blend-mode: screen;
+  opacity: 0.28;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .rituals-editorial__smoke {
+    animation: rituals-editorial-smoke 22s $_ease-cinematic infinite;
+  }
+}
+
+.rituals-editorial__visual--ember {
+  background:
+    radial-gradient(ellipse 92% 72% at 54% 8%, rgb(255 206 164 / 0.12), transparent 58%),
+    radial-gradient(circle at 16% 90%, rgb(42 62 118 / 0.22), transparent 58%),
+    linear-gradient(154deg, #080604 0%, #1c1410 52%, #0f1412 100%);
+}
+
+.rituals-editorial__visual--cedar {
+  background:
+    radial-gradient(ellipse 88% 78% at 42% 4%, rgb(118 182 158 / 0.12), transparent 54%),
+    radial-gradient(circle at 92% 78%, rgb(28 42 36 / 0.45), transparent 52%),
+    linear-gradient(168deg, #060a08 0%, #12241c 48%, #0a100e 100%);
+}
+
+.rituals-editorial__visual--mist {
+  background:
+    radial-gradient(ellipse 80% 70% at 72% 18%, rgb(168 198 212 / 0.08), transparent 58%),
+    radial-gradient(circle at 30% 88%, rgb(18 22 28 / 0.55), transparent 55%),
+    linear-gradient(178deg, #050608 0%, #101820 55%, #080a0c 100%);
+}
+
+.rituals-editorial__copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(0.65rem, 1.8vw, 1rem);
+  padding-block: clamp(0.25rem, 1.5vw, 0.75rem);
+  max-width: min(30rem, 100%);
+}
+
+.rituals-editorial__name {
+  margin: 0;
+  font-family: $_serif;
+  font-weight: 400;
+  font-size: clamp(2.15rem, 4.2vw, 3.25rem);
+  line-height: 1.04;
+  letter-spacing: 0.02em;
+  color: rgb(236 228 214 / 0.9);
+}
+
+.rituals-editorial__text {
+  margin: 0;
+  font-family: $_sans;
+  font-size: clamp(0.98rem, 1.35vw, 1.08rem);
+  line-height: 1.72;
+  font-weight: 400;
+  color: rgb(148 136 118 / 0.56);
+}
+
+/* ——— Flow ——— */
+
+.rituals-flow {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: min(48rem, 100%);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 3.75rem);
+  padding-block: clamp(3.5rem, 12vw, 8.5rem);
+}
+
+.rituals-flow__wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rituals-flow__intro {
+  text-align: center;
+  margin-bottom: clamp(2.5rem, 7vw, 4.25rem);
+}
+
+.rituals-flow__title {
+  margin: 0;
+  font-family: $_serif;
+  font-weight: 400;
+  font-size: clamp(1.65rem, 3.2vw, 2.35rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgb(188 176 158 / 0.42);
+}
+
+.rituals-flow__timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+}
+
+.rituals-flow__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.rituals-flow__label {
+  font-family: $_serif;
+  font-weight: 400;
+  font-size: clamp(1.22rem, 2.2vw, 1.55rem);
+  letter-spacing: 0.06em;
+  color: rgb(226 218 204 / 0.78);
+}
+
+.rituals-flow__glyph {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-block: clamp(1.1rem, 2.8vw, 1.65rem);
+  color: rgb(168 158 142 / 0.28);
+}
+
+.rituals-flow__line {
+  width: 1px;
+  height: clamp(1.75rem, 4vw, 2.5rem);
+  margin-bottom: clamp(0.35rem, 1vw, 0.65rem);
+  background: linear-gradient(
+    to bottom,
+    rgb(184 168 148 / 0.22),
+    rgb(128 116 102 / 0.08)
+  );
+}
+
+.rituals-flow__caret {
+  display: block;
+  font-family: $_serif;
+  font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+  line-height: 1;
+  letter-spacing: 0.12em;
+  opacity: 0.55;
+}
+
+/* ——— Philosophy ——— */
+
+.rituals-silence {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: min(58rem, 100%);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 3.75rem);
+  padding-block: clamp(4rem, 14vw, 11rem);
+}
+
+.rituals-silence__wrap {
+  width: 100%;
+}
+
+blockquote.rituals-silence__blockquote {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.rituals-silence__blockquote p {
+  margin: 0;
+}
+
+.rituals-silence__quote {
+  margin: 0 auto;
+  max-width: 18ch;
+  font-family: $_serif;
+  font-weight: 400;
+  font-size: clamp(2.5rem, 7vw, 5.65rem);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  text-align: center;
+  color: rgb(240 232 220 / 0.9);
+}
+
+.rituals-silence__aside {
+  margin: clamp(2.25rem, 5vw, 3.85rem) auto 0;
+  max-width: 42rem;
+  font-family: $_sans;
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 1.76;
+  font-weight: 400;
+  text-align: center;
+  color: rgb(148 138 122 / 0.52);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rituals-page__haze {
+    animation: none;
+  }
+
+  .rituals-editorial__smoke {
+    animation: none;
+  }
+
+  .rituals-page__mote {
+    animation: none;
+    opacity: 0.4;
+  }
+}

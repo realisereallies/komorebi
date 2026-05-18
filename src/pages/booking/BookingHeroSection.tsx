@@ -1,3 +1,5 @@
+import { playNavTapSound } from '@/utils/playNavTapSound'
+
 import '../home/sections/hero-section.scss'
 
 import './booking-hero-section.scss'
@@ -18,7 +20,11 @@ export function BookingHeroSection() {
           <p className="booking-hero__lede">
             Request a seated ritual—we reply with refined availability notes.
           </p>
-          <form className="booking-form" aria-describedby="booking-heading">
+          <form
+            className="booking-form"
+            aria-describedby="booking-heading"
+            onSubmit={() => playNavTapSound()}
+          >
             <div className="booking-form__grid">
               <div className="booking-form__group booking-form__group--name">
                 <label htmlFor="booking-name">Name</label>

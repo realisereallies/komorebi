@@ -1,11 +1,22 @@
+import { RevealItem, RevealStagger } from '@/components/RevealSection/RevealSection'
+import { revealViewportCompact } from '@/components/RevealSection/revealMotion'
+
 export function PhilosophyBlockSection() {
   return (
-    <section aria-labelledby="philosophy-block-heading">
-      <h2 id="philosophy-block-heading">Philosophy in practice</h2>
-      <p>
-        Every pour is measured: sound, temperature, and the guest&apos;s breath.
-        Premium does not mean loud—it means precise.
-      </p>
+    <section className="rituals-silence" aria-labelledby="about-philosophy-quote">
+      <RevealStagger viewport={revealViewportCompact} className="rituals-silence__wrap">
+        <RevealItem>
+          <blockquote className="rituals-silence__blockquote">
+            <p id="about-philosophy-quote" className="rituals-silence__quote">
+              “Tea asks for nowhere else to be.”
+            </p>
+            <p className="rituals-silence__aside">
+              We tend the room—the temperature of water, the weight of porcelain, the hush between pours—so you can
+              stay present for what is unfolding in your cup.
+            </p>
+          </blockquote>
+        </RevealItem>
+      </RevealStagger>
     </section>
   )
 }

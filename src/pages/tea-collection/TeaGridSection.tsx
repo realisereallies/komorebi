@@ -1,39 +1,65 @@
+import { motion, useReducedMotion } from 'framer-motion'
+
+import { revealNestedContainerVariants } from '@/components/RevealSection/revealMotion'
+import { RevealItem } from '@/components/RevealSection/RevealSection'
 import { TeaCard } from '@/components/tea/TeaCard'
 
-const mockData = [
+const teas = [
   {
     id: 'matcha',
     name: 'Matcha',
-    description: 'Stone-milled emerald froth made for ceremonial stillness.',
+    origin: 'Uji',
+    description: 'Stone-milled shade. Velvet umami, moss-quiet finish.',
   },
   {
     id: 'sencha',
     name: 'Sencha',
-    description: 'Bright steamed leaves with coastal breeze aromatics.',
+    origin: 'Shizuoka',
+    description: 'Steamed spring leaf, saline brightness, soft astringency.',
   },
   {
     id: 'hojicha',
     name: 'Hojicha',
-    description: 'Roasted warmth with low caffeine for twilight pours.',
+    origin: 'Kyoto',
+    description: 'Roasted warmth and caramel smoke. Evening-weight.',
   },
   {
     id: 'jasmine',
     name: 'Jasmine Tea',
-    description: 'Night-bloomed blossoms layered onto tender green tea.',
+    origin: 'Fujian',
+    description: 'Night-bloomed perfume folded into tender green leaf.',
   },
 ] as const
 
 export function TeaGridSection() {
+  const reduceMotion = useReducedMotion()
+
   return (
-    <section aria-labelledby="tea-grid-heading">
-      <h2 id="tea-grid-heading">Curated teas</h2>
-      <ul className="tea-grid">
-        {mockData.map((tea) => (
-          <li key={tea.id}>
-            <TeaCard name={tea.name} description={tea.description} />
-          </li>
+    <section className="tea-archive-section tea-archive-grid" aria-label="Tea archive">
+      <motion.div
+        className="tea-archive__list"
+        role="list"
+        variants={revealNestedContainerVariants(!!reduceMotion)}
+        initial={reduceMotion ? 'visible' : 'hidden'}
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1, margin: '0px 0px -10% 0px' }}
+      >
+        {teas.map((tea) => (
+          <RevealItem
+            key={tea.id}
+            as="div"
+            role="listitem"
+            className={`tea-archive__item tea-archive__item--${tea.id}`}
+          >
+            <TeaCard
+              teaId={tea.id}
+              name={tea.name}
+              origin={tea.origin}
+              description={tea.description}
+            />
+          </RevealItem>
         ))}
-      </ul>
+      </motion.div>
     </section>
   )
 }

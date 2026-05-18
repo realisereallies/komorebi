@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion'
-import type { HTMLMotionProps } from 'framer-motion'
+import type { HTMLMotionProps, MotionProps } from 'framer-motion'
 import type { ReactNode } from 'react'
 
 import {
@@ -37,9 +37,10 @@ export function RevealItem({ as = 'div', children, ...rest }: RevealItemProps) {
 type RevealStaggerProps = {
   children: ReactNode
   className?: string
+  viewport?: MotionProps['viewport']
 }
 
-export function RevealStagger({ children, className }: RevealStaggerProps) {
+export function RevealStagger({ children, className, viewport }: RevealStaggerProps) {
   const reduceMotion = useReducedMotion()
   return (
     <motion.div
@@ -47,7 +48,7 @@ export function RevealStagger({ children, className }: RevealStaggerProps) {
       variants={staggerContainerVariants(!!reduceMotion)}
       initial={reduceMotion ? 'visible' : 'hidden'}
       whileInView="visible"
-      viewport={revealViewport}
+      viewport={viewport ?? revealViewport}
     >
       {children}
     </motion.div>
@@ -57,9 +58,10 @@ export function RevealStagger({ children, className }: RevealStaggerProps) {
 type RevealSectionProps = {
   children: ReactNode
   className?: string
+  viewport?: MotionProps['viewport']
 }
 
-export function RevealSection({ children, className }: RevealSectionProps) {
+export function RevealSection({ children, className, viewport }: RevealSectionProps) {
   const reduceMotion = useReducedMotion()
   return (
     <motion.div
@@ -67,7 +69,7 @@ export function RevealSection({ children, className }: RevealSectionProps) {
       variants={revealItemVariants}
       initial={reduceMotion ? 'visible' : 'hidden'}
       whileInView="visible"
-      viewport={revealViewport}
+      viewport={viewport ?? revealViewport}
       transition={revealItemTransition(!!reduceMotion)}
     >
       {children}

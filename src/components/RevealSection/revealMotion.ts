@@ -4,6 +4,13 @@ export const revealViewport = {
   margin: '0px 0px -8% 0px',
 } as const
 
+/** Long home sections — generous intersection root. Compact routes need earlier firing so roots don’t stay invisible. */
+export const revealViewportCompact = {
+  once: true,
+  amount: 0.06,
+  margin: '0px',
+} as const
+
 export const revealItemVariants = {
   hidden: { opacity: 0, y: 44 },
   visible: { opacity: 1, y: 0 },

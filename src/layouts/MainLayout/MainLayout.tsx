@@ -1,3 +1,4 @@
+import { useLayoutEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 
 import { Footer } from '@/components/Footer/Footer'
@@ -7,6 +8,10 @@ import './MainLayout.scss'
 
 export function MainLayout() {
   const { pathname } = useLocation()
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
   const isFullBleedUnderHeader = pathname === '/' || pathname === '/booking'
 
   return (

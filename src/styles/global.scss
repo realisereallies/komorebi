@@ -96,8 +96,10 @@ main {
 }
 
 main section:not(.page):not(.hero-section):not(.philosophy-section):not(.tea-collection-section):not(
-    .rituals-section
-  ):not(.guest-voices-section):not(.atmosphere-gallery):not(.booking-cta-section) {
+    .tea-archive-section
+  ):not(.rituals-section):not(.guest-voices-section):not(.atmosphere-gallery):not(.booking-cta-section):not(
+    .rituals-hero
+  ):not(.rituals-signature):not(.rituals-flow):not(.rituals-silence) {
   max-width: $content-max-width;
   margin-inline: auto;
   padding-block: $space-xl;
@@ -108,31 +110,38 @@ main section:not(.page):not(.hero-section):not(.philosophy-section):not(.tea-col
   }
 }
 
-main section:not(.hero-section):not(.tea-collection-section):not(.rituals-section):not(
-    .guest-voices-section
-  ):not(.atmosphere-gallery):not(.booking-cta-section) h2 {
+main section:not(.hero-section):not(.tea-collection-section):not(.tea-archive-section):not(
+    .rituals-section
+  ):not(.guest-voices-section):not(.atmosphere-gallery):not(.booking-cta-section):not(.rituals-flow):not(
+    .rituals-signature
+  )
+    h2 {
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   margin-bottom: $space-md;
 }
 
-main section:not(.hero-section) h3 {
+main section:not(.hero-section):not(.tea-archive-section):not(.rituals-section):not(.guest-voices-section):not(
+    .atmosphere-gallery
+  ):not(.booking-cta-section):not(.rituals-signature) h3 {
   font-size: 1.125rem;
   font-weight: 600;
   margin-bottom: $space-sm;
 }
 
-main section:not(.hero-section) header h1 {
+main section:not(.hero-section):not(.rituals-hero) header h1 {
   font-size: clamp(1.75rem, 2.5vw, 2.25rem);
   font-weight: 700;
   letter-spacing: -0.02em;
   margin-bottom: $space-md;
 }
 
-main section:not(.hero-section):not(.tea-collection-section):not(.rituals-section):not(
-    .guest-voices-section
-  ):not(.atmosphere-gallery):not(.booking-cta-section) p {
+main section:not(.hero-section):not(.tea-collection-section):not(.tea-archive-section):not(
+    .rituals-section
+  ):not(.guest-voices-section):not(.atmosphere-gallery):not(.booking-cta-section):not(.rituals-hero):not(
+    .rituals-signature
+  ):not(.rituals-flow):not(.rituals-silence) p {
   max-width: 42rem;
 
   &:not(:last-child) {
@@ -140,7 +149,7 @@ main section:not(.hero-section):not(.tea-collection-section):not(.rituals-sectio
   }
 }
 
-main section:not(.hero-section) ul {
+main section:not(.hero-section):not(.tea-archive-section) ul {
   display: grid;
   gap: $space-md;
   margin-top: $space-lg;
@@ -148,31 +157,6 @@ main section:not(.hero-section) ul {
   @include mixins.mq(md) {
     gap: $space-lg;
   }
-}
-
-.tea-grid,
-.ritual-grid {
-  grid-template-columns: 1fr;
-
-  @include mixins.mq(md) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.tea-card,
-.ritual-card {
-  padding: $space-lg;
-  background-color: $surface;
-  border: 1px solid $border;
-  border-radius: $radius-md;
-  box-shadow: $shadow-sm;
-}
-
-.tea-card p,
-.ritual-card p {
-  color: $color-text-muted;
-  font-size: 0.95rem;
-  margin-bottom: 0 !important;
 }
 
 blockquote {
