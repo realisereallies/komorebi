@@ -1,0 +1,13 @@
+.shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.shell__main {
+  flex: 1 1 auto;
+}
+
+.shell__main--offset {
+  padding-top: var(--site-header-height, 4.5rem);
+}

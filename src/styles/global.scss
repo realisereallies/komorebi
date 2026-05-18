@@ -1,0 +1,231 @@
+@use './reset';
+@use './variables' as *;
+@use './mixins' as mixins;
+
+:root {
+  --site-header-height: 4.25rem;
+  color-scheme: light;
+  font-family: $font-sans;
+  color: $color-text;
+  background-color: $color-bg;
+}
+
+body {
+  font-family: $font-sans;
+  color: $color-text;
+  background-color: $color-bg;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 1 auto;
+}
+
+main section:not(.page):not(.hero-section):not(.philosophy-section):not(.tea-collection-section) {
+  max-width: $content-max-width;
+  margin-inline: auto;
+  padding-block: $space-xl;
+  padding-inline: $space-md;
+
+  &:first-child {
+    padding-block-start: $space-xl;
+  }
+}
+
+main section:not(.hero-section):not(.tea-collection-section) h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: $space-md;
+}
+
+main section:not(.hero-section) h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: $space-sm;
+}
+
+main section:not(.hero-section) header h1 {
+  font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: $space-md;
+}
+
+main section:not(.hero-section):not(.tea-collection-section) p {
+  max-width: 42rem;
+
+  &:not(:last-child) {
+    margin-bottom: $space-md;
+  }
+}
+
+main section:not(.hero-section) ul {
+  display: grid;
+  gap: $space-md;
+  margin-top: $space-lg;
+
+  @include mixins.mq(md) {
+    gap: $space-lg;
+  }
+}
+
+.tea-grid,
+.ritual-grid {
+  grid-template-columns: 1fr;
+
+  @include mixins.mq(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.tea-card,
+.ritual-card {
+  padding: $space-lg;
+  background-color: $surface;
+  border: 1px solid $border;
+  border-radius: $radius-md;
+  box-shadow: $shadow-sm;
+}
+
+.tea-card p,
+.ritual-card p {
+  color: $color-text-muted;
+  font-size: 0.95rem;
+  margin-bottom: 0 !important;
+}
+
+blockquote {
+  padding: $space-md $space-lg;
+  border-inline-start: 3px solid $accent;
+  background-color: rgb(240 253 250 / 0.5);
+  border-radius: 0 $radius-md $radius-md 0;
+  max-width: 42rem;
+
+  p {
+    margin-bottom: $space-sm !important;
+  }
+
+  footer {
+    font-size: 0.875rem;
+    color: $color-text-muted;
+  }
+}
+
+main section:not(.hero-section) p a,
+main section:not(.hero-section) nav a {
+  color: $accent;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+
+  &:hover {
+    color: $accent-hover;
+  }
+
+  &:focus-visible {
+    @include mixins.focus-ring;
+  }
+}
+
+.booking-form {
+  max-width: 28rem;
+  margin-top: $space-lg;
+}
+
+.booking-form__group {
+  margin-bottom: $space-md;
+}
+
+.booking-form__group label {
+  display: block;
+  font-weight: 500;
+  font-size: 0.875rem;
+  margin-bottom: $space-xs;
+}
+
+.booking-form__group input,
+.booking-form__group textarea {
+  display: block;
+  width: 100%;
+  padding: $space-sm $space-md;
+  border-radius: $radius-md;
+  border: 1px solid $border;
+  background-color: $surface;
+
+  &:focus-visible {
+    @include mixins.focus-ring;
+  }
+}
+
+.booking-form button[type='submit'] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: $space-sm;
+  padding: $space-sm $space-lg;
+  font-weight: 600;
+  color: white;
+  background-color: $accent;
+  border-radius: $radius-md;
+  box-shadow: $shadow-sm;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $accent-hover;
+  }
+
+  &:focus-visible {
+    @include mixins.focus-ring;
+  }
+}
+
+.page {
+  max-width: $content-max-width;
+  margin-inline: auto;
+  padding-block: $space-xl;
+  padding-inline: $space-md;
+  width: 100%;
+}
+
+.page__title {
+  font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: $space-md;
+}
+
+.page__lead {
+  color: $color-text-muted;
+  font-size: 1.125rem;
+  max-width: 42rem;
+}
+
+.page--not-found {
+  text-align: center;
+
+  .page__title {
+    font-size: clamp(3rem, 8vw, 5rem);
+    color: $accent;
+  }
+
+  nav a {
+    color: $accent;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+
+    &:hover {
+      color: $accent-hover;
+    }
+
+    &:focus-visible {
+      @include mixins.focus-ring;
+    }
+  }
+}

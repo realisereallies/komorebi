@@ -1,0 +1,287 @@
+@use '../../../styles/mixins' as mixins;
+
+// Editorial philosophy — continuous dark field (seamless with hero #080706)
+
+.philosophy-section__tree-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.072;
+  /* Дерево + коричневая градация: глубина, тень у корня, без серого */
+  background-image:
+    linear-gradient(
+      148deg,
+      rgb(34 24 18 / 0.42) 0%,
+      rgb(22 16 12 / 0.14) 44%,
+      transparent 64%
+    ),
+    radial-gradient(
+      ellipse 72% 48% at 2% 96%,
+      rgb(55 36 26 / 0.36) 0%,
+      rgb(30 20 14 / 0.12) 48%,
+      transparent 62%
+    ),
+    linear-gradient(
+      to top,
+      rgb(26 18 13 / 0.42) 0%,
+      rgb(15 11 8 / 0.16) 32%,
+      transparent 54%
+    ),
+    url('../../../assets/images/tree.png');
+  background-repeat: no-repeat;
+  background-position:
+    0 100%,
+    0 100%,
+    0 100%,
+    left bottom -100px;
+  background-size:
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    auto 120%;
+}
+
+.philosophy-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  padding-block-start: clamp(4.25rem, 11vw, 9rem);
+  padding-block-end: clamp(2.125rem, 5.5vw, 4.5rem);
+  padding-inline: 0;
+  /* Верх — стык с hero; низ — только глубокий тёплый тёмный (без серо-бежевого пятна) */
+  background-color: #080706;
+  background-image: linear-gradient(
+    to bottom,
+    #080706 0%,
+    #080706 min(28vh, 24%),
+    #0b0908 32%,
+    #120d0a 42%,
+    #1a120d 50%,
+    #14100d 58%,
+    #120d0a 68%,
+    #0f0b09 78%,
+    #0b0908 90%,
+    #080706 100%
+  );
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    opacity: 0.032;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.45'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 160px 160px;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    /* Только тёплая тень: без светлого glow, узкий spread, низ — погружение в #080706 */
+    background-image:
+      radial-gradient(
+        ellipse 52% 34% at 58% 40%,
+        rgb(26 18 13 / 0.14),
+        transparent 58%
+      ),
+      linear-gradient(
+        to bottom,
+        transparent 0%,
+        transparent 52%,
+        rgb(11 9 8 / 0.22) 82%,
+        #080706 100%
+      );
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+
+.philosophy-section__inner {
+  position: relative;
+  z-index: 4;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  gap: clamp(2.75rem, 7vw, 5.25rem);
+  width: 100%;
+  max-width: min(82rem, 100%);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4.5vw, 3rem);
+
+  @include mixins.mq(md) {
+    grid-template-columns: minmax(0, 1fr) minmax(17rem, 0.5fr);
+    align-items: start;
+    gap: clamp(2.5rem, 5.5vw, 5rem);
+    padding-block: clamp(0.25rem, 2vw, 1rem) 0;
+  }
+}
+
+.philosophy-section__copy {
+  max-width: 40rem;
+
+  @include mixins.mq(md) {
+    align-self: start;
+    padding-block-start: clamp(0.25rem, 2vw, 1.75rem);
+    transform: translateY(clamp(-0.75rem, -1.8vw, -2.25rem));
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transform: none;
+  }
+}
+
+.philosophy-section__label {
+  margin: 0 0 clamp(1.25rem, 3vw, 2rem);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: rgb(148 140 128 / 0.52);
+}
+
+.philosophy-section__title {
+  margin: 0 0 clamp(1.75rem, 4vw, 2.75rem);
+  font-family: 'Cormorant Garamond', 'Noto Sans JP', georgia, serif;
+  font-weight: 400;
+  font-size: clamp(2.125rem, 4.4vw, 3.35rem);
+  line-height: 1.16;
+  letter-spacing: -0.015em;
+  color: rgb(238 232 220 / 0.93);
+  text-shadow: 0 1px 36px rgb(0 0 0 / 0.35);
+}
+
+.philosophy-section__title-line {
+  display: block;
+  margin-top: 0.28em;
+  color: rgb(218 210 196 / 0.78);
+  font-weight: 400;
+}
+
+.philosophy-section__lead {
+  margin: 0;
+  max-width: 34rem;
+  font-size: clamp(0.9375rem, 1.35vw, 1.0625rem);
+  font-weight: 400;
+  line-height: 1.75;
+  color: rgb(154 144 130 / 0.58);
+}
+
+.philosophy-section__figure {
+  position: relative;
+  margin: 0;
+  justify-self: stretch;
+
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    inset: -22% -28% -18% -12%;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse 58% 52% at 62% 46%,
+      rgb(45 30 22 / 0.18),
+      rgb(22 16 12 / 0.08) 48%,
+      transparent 70%
+    );
+    filter: blur(48px);
+    opacity: 0.32;
+
+    @media (prefers-reduced-motion: reduce) {
+      filter: blur(28px);
+    }
+  }
+
+  @include mixins.mq(md) {
+    justify-self: end;
+    width: 100%;
+    max-width: min(27rem, 42vw);
+    align-self: center;
+    margin-block-start: clamp(0rem, 1vw, 1rem);
+  }
+}
+
+.philosophy-section__figure-frame {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  border-radius: clamp(12px, 2vw, 18px);
+  transform: scale(1.02);
+  transform-origin: center right;
+  box-shadow:
+    0 36px 72px rgb(0 0 0 / 0.52),
+    0 18px 36px rgb(0 0 0 / 0.35),
+    0 0 0 1px rgb(48 40 34 / 0.35),
+    0 0 72px rgb(28 20 14 / 0.12),
+    0 0 120px rgb(18 12 9 / 0.22);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      158deg,
+      rgb(0 0 0 / 0.48) 0%,
+      rgb(0 0 0 / 0.12) 38%,
+      transparent 55%,
+      rgb(0 0 0 / 0.42) 100%
+    );
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.28;
+    mix-blend-mode: soft-light;
+    background:
+      radial-gradient(
+        circle at 28% 22%,
+        rgb(40 28 20 / 0.12),
+        transparent 52%
+      ),
+      radial-gradient(
+        ellipse 88% 64% at 72% 88%,
+        rgb(14 10 8 / 0.32),
+        transparent 58%
+      );
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transform: none;
+  }
+}
+
+.philosophy-section__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.045);
+  filter: brightness(0.84) contrast(0.93) saturate(0.74);
+  transition: filter 650ms ease;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+.philosophy-section__figure-frame:hover .philosophy-section__img {
+  filter: brightness(0.88) contrast(0.94) saturate(0.76);
+}

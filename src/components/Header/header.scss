@@ -1,0 +1,109 @@
+// Quiet premium header: floating type, minimal chrome, no navbar “block”
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: var(--site-header-height, 4.25rem);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.28) 0%,
+    rgba(0, 0, 0, 0.08) 100%
+  );
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: background 420ms ease;
+
+  /* Black glass strip — no brown cast */
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(1.25rem, 4vw, 3rem);
+  width: 100%;
+  max-width: 88rem;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 3rem);
+  min-height: var(--site-header-height, 4.25rem);
+}
+
+.header__brand {
+  flex-shrink: 0;
+  font-family: 'Cormorant Garamond', 'Noto Sans JP', georgia, serif;
+  font-size: clamp(1.0625rem, 1.8vw, 1.25rem);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: rgba(230, 226, 220, 0.78);
+  text-decoration: none;
+  transition: color 380ms ease, opacity 380ms ease;
+
+  &:hover {
+    color: rgba(240, 236, 230, 0.92);
+  }
+
+  &:focus-visible {
+    outline: 1px solid rgba(210, 200, 190, 0.35);
+    outline-offset: 6px;
+    border-radius: 1px;
+  }
+}
+
+.header__nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem 1.25rem;
+  margin: 0;
+}
+
+.header__navlink {
+  display: inline-block;
+  padding: 0.2rem 0;
+  border: none;
+  border-radius: 0;
+  font-size: 0.625rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-underline-offset: 0.35rem;
+  color: rgba(210, 206, 200, 0.48);
+  background: transparent;
+  transition:
+    color 400ms ease,
+    opacity 400ms ease,
+    text-decoration-color 400ms ease;
+
+  &:hover {
+    color: rgba(228, 224, 218, 0.78);
+    background: transparent;
+  }
+
+  &--active {
+    color: rgba(232, 228, 222, 0.82);
+    background: transparent;
+    text-decoration: underline;
+    text-decoration-color: rgba(190, 182, 170, 0.35);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.45rem;
+
+    &:hover {
+      color: rgba(240, 236, 230, 0.9);
+      background: transparent;
+      text-decoration-color: rgba(200, 192, 182, 0.45);
+    }
+  }
+
+  &:focus-visible {
+    outline: 1px solid rgba(200, 192, 184, 0.35);
+    outline-offset: 5px;
+  }
+}

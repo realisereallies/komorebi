@@ -1,0 +1,470 @@
+@use '../../../styles/mixins' as mixins;
+
+.tea-collection-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  width: 100%;
+  padding-block-start: clamp(3rem, 9vw, 6rem);
+  padding-block-end: clamp(5rem, 14vw, 10rem);
+
+  @include mixins.mq(md) {
+    padding-block-start: 96px;
+    padding-block-end: 160px;
+  }
+
+  color: rgb(182 178 164 / 0.76);
+  /*
+   * Стик к философии сверху (#080706), затем очень медленный увод в почти‑чёрный
+   * лесной оттенок (низкая насыщенность — не «яркий хаки»).
+   */
+  background-color: #080706;
+  background-image:
+    radial-gradient(
+      ellipse 96% 48% at 50% 100%,
+      rgb(36 62 44 / 0.1) 0%,
+      transparent 58%
+    ),
+    radial-gradient(
+      ellipse 90% 74% at 78% 48%,
+      rgb(32 52 42 / 0.1) 0%,
+      transparent 54%
+    ),
+    radial-gradient(ellipse 78% 46% at 18% 88%, rgb(24 42 34 / 0.26), transparent 58%),
+    linear-gradient(
+      to bottom,
+      #080706 0%,
+      #080706 10%,
+      #090807 22%,
+      #090b0b 38%,
+      #0c1210 52%,
+      #0e1714 66%,
+      #101917 82%,
+      #101a17 100%
+    );
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: url('/img/smoke.png') center / cover no-repeat;
+    opacity: 0.5;
+  }
+}
+
+.tea-collection-section__atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 72% 50% at 50% 44%,
+      rgb(48 74 62 / 0.06) 0%,
+      transparent 62%
+    ),
+    linear-gradient(
+      to bottom,
+      rgb(11 13 11 / 0.1) 0%,
+      transparent 26%,
+      transparent 64%,
+      rgb(12 26 21 / 0.32) 100%
+    );
+  opacity: 0.94;
+}
+
+.tea-collection-section__grain {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.034;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+.tea-collection-section__inner {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: min(82rem, 100%);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 3.75rem);
+}
+
+.tea-collection-section__layout {
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 4.5rem);
+  align-items: center;
+
+  @include mixins.mq(md) {
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 1.06fr);
+    column-gap: clamp(2rem, 4.25vw, 4.75rem);
+  }
+}
+
+.tea-collection-section__copy {
+  max-width: 36rem;
+
+  @include mixins.mq(md) {
+    padding-block: 0.35rem;
+  }
+}
+
+.tea-collection-section__eyebrow {
+  margin: 0 0 clamp(1.35rem, 3vw, 1.85rem);
+  font-size: 0.5625rem;
+  font-weight: 500;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: rgb(148 138 126 / 0.45);
+}
+
+.tea-collection-section__title {
+  margin: 0;
+  font-family: 'Cormorant Garamond', 'Noto Sans JP', georgia, serif;
+  font-weight: 400;
+  font-size: clamp(2.15rem, 4.05vw, 3.35rem);
+  line-height: 1.24;
+  letter-spacing: -0.012em;
+  color: rgb(238 230 218 / 0.92);
+
+  &::after {
+    content: '';
+    display: block;
+    width: clamp(3rem, 12vw, 4.75rem);
+    height: 1px;
+    margin-block: clamp(1.65rem, 3.4vw, 2.35rem);
+    background: linear-gradient(
+      to right,
+      rgb(132 118 104 / 0.28),
+      rgb(132 118 104 / 0),
+      rgb(132 118 104 / 0)
+    );
+  }
+}
+
+.tea-collection-section__title-line {
+  display: block;
+
+  &:not(:first-child) {
+    margin-top: 0.06em;
+  }
+
+  &.tea-collection-section__title-line--muted {
+    color: rgb(208 194 174 / 0.78);
+  }
+}
+
+.tea-collection-section__lead {
+  margin: 0 0 clamp(1.85rem, 3.5vw, 2.5rem);
+  max-width: 32rem;
+  font-size: clamp(1rem, 1.42vw, 1.0875rem);
+  line-height: 1.7;
+  font-weight: 400;
+  color: rgb(176 164 146 / 0.72);
+}
+
+.tea-collection-section__ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 0;
+  font-size: 0.5625rem;
+  font-weight: 500;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgb(188 178 164 / 0.55);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgb(92 82 74 / 0.28);
+  transition:
+    color 0.8s ease,
+    border-color 0.8s ease,
+    letter-spacing 0.8s ease;
+
+  &:hover {
+    color: rgb(226 218 206 / 0.82);
+    border-color: rgb(132 118 104 / 0.38);
+    letter-spacing: 0.37em;
+  }
+
+  &:focus-visible {
+    outline: 1px solid rgb(130 118 102 / 0.45);
+    outline-offset: 6px;
+  }
+}
+
+/* Grid: satellites column (leaves stack + cups) | hero pillar */
+
+.tea-collection-section__mosaic {
+  position: relative;
+  gap: clamp(0.875rem, 2vw, 1.375rem);
+
+  @include mixins.mq(md) {
+    display: grid;
+    grid-template-columns: minmax(0, 0.82fr) minmax(240px, 1fr);
+    grid-template-rows: auto auto;
+    align-items: start;
+    column-gap: clamp(0.875rem, 2vw, 1.375rem);
+    row-gap: clamp(0.875rem, 2vw, 1.375rem);
+    min-height: 32rem;
+  }
+}
+
+/* Unwrap satellites so leaves & cups are direct grid participants on desktop */
+
+.tea-collection-section__satellites {
+  display: contents;
+}
+
+.tea-collection-section__tile {
+  margin: 0;
+}
+
+.tea-collection-section__tile--ritual {
+  @include mixins.mq(md) {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: end;
+    align-self: start;
+
+    --tea-mosaic-pull: clamp(0.25rem, 1vw, 0.95rem);
+
+    width: min(72%, clamp(174px, 18.5vw, 232px));
+    margin-inline-end: var(--tea-mosaic-pull);
+  }
+}
+
+.tea-collection-section__tile--ritual .tea-collection-section__tile-frame {
+  aspect-ratio: 4 / 5;
+  width: 100%;
+
+  @include mixins.mq(md) {
+    aspect-ratio: 5 / 6;
+    max-block-size: clamp(11.25rem, 22vw, 14.75rem);
+  }
+}
+
+.tea-collection-section__tile--cups {
+  @include mixins.mq(md) {
+    grid-column: 1;
+    grid-row: 2;
+
+    justify-self: stretch;
+    align-self: end;
+    margin-inline-start: clamp(0rem, 1.5vw, 1.85rem);
+
+    margin-inline-end: clamp(0.25rem, 1vw, 0.95rem);
+  }
+}
+
+.tea-collection-section__tile--cups .tea-collection-section__tile-frame {
+  aspect-ratio: 16 / 9;
+}
+
+.tea-collection-section__tile--pillar {
+  @include mixins.mq(md) {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: stretch;
+    justify-self: end;
+    width: 100%;
+
+    margin-inline-start: clamp(0.25rem, 2vw, 1.85rem);
+
+    margin-block: auto;
+    max-width: min(390px, 100%);
+    height: clamp(380px, 52vw, 520px);
+  }
+}
+
+.tea-collection-section__tile--pillar .tea-collection-section__tile-frame {
+  height: 100%;
+
+  @include mixins.mq(md) {
+    aspect-ratio: auto;
+    min-height: clamp(380px, 52vw, 520px);
+  }
+}
+
+.tea-collection-section__tile-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  width: 100%;
+  box-shadow:
+    0 52px 100px rgb(0 0 0 / 0.42),
+    0 26px 48px rgb(12 8 6 / 0.28),
+    0 0 0 1px rgb(38 28 22 / 0.38),
+    inset 0 1px 0 rgb(118 94 74 / 0.06);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      168deg,
+      rgb(10 8 7 / 0.62) 0%,
+      rgb(22 17 14 / 0.25) 36%,
+      transparent 54%,
+      rgb(14 11 10 / 0.55) 100%
+    );
+    opacity: 0.58;
+    mix-blend-mode: multiply;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.2;
+    mix-blend-mode: soft-light;
+    background:
+      radial-gradient(circle at 14% 10%, rgb(56 42 28 / 0.12), transparent 58%),
+      radial-gradient(ellipse 118% 80% at 88% 90%, rgb(18 13 11 / 0.45), transparent 62%);
+  }
+}
+
+.tea-collection-section__tile-media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  vertical-align: bottom;
+  transform: scale(1.03);
+  transform-origin: center;
+  transition:
+    transform 0.8s ease,
+    filter 0.8s ease;
+  filter:
+    brightness(0.76)
+    contrast(0.92)
+    saturate(0.64);
+}
+
+.tea-collection-section__tile--pillar .tea-collection-section__tile-media {
+  object-position: 48% 44%;
+}
+
+.tea-collection-section__tile--cups .tea-collection-section__tile-media {
+  object-position: 52% 48%;
+}
+
+.tea-collection-section__tile--ritual .tea-collection-section__tile-media {
+  object-position: 50% 46%;
+}
+
+.tea-collection-section__tile-frame:hover .tea-collection-section__tile-media {
+  transform: scale(1.04);
+  filter:
+    brightness(0.82)
+    contrast(0.94)
+    saturate(0.67);
+}
+
+@media (width < 48rem) {
+  .tea-collection-section__mosaic {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1rem, 3.25vw, 1.375rem);
+  }
+
+  .tea-collection-section__tile--pillar {
+    align-self: stretch;
+    width: 100%;
+    margin: 0;
+    max-width: none;
+    height: auto;
+  }
+
+  .tea-collection-section__tile--pillar .tea-collection-section__tile-frame {
+    aspect-ratio: 5 / 6;
+    min-height: unset;
+    max-height: min(62vh, 29rem);
+  }
+
+  .tea-collection-section__satellites {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1rem, 3.25vw, 1.375rem);
+
+    /*
+     * Light editorial offset keeps the pairing from collapsing into centered cards
+     */
+
+    align-self: flex-start;
+
+    /*
+     * Full bleed under the narrower leaves card for a wide cinematic band
+     */
+
+    width: 100%;
+    max-width: min(26rem, 100%);
+    margin-inline-start: clamp(1.5rem, 11vw, 4.25rem);
+  }
+
+  .tea-collection-section__tile--ritual {
+    align-self: flex-start;
+    width: min(74%, 16rem);
+
+    .tea-collection-section__tile-frame {
+      aspect-ratio: 4 / 5;
+      max-block-size: clamp(13rem, 44vw, 16rem);
+    }
+  }
+
+  .tea-collection-section__tile--cups .tea-collection-section__tile-frame {
+    aspect-ratio: 16 / 9;
+    max-block-size: clamp(11rem, 38vw, 14rem);
+  }
+
+  .tea-collection-section__tile--cups {
+    /*
+     * Stagger the horizon line under the tighter portrait frame
+     */
+
+    margin-inline-start: clamp(12%, 20vw, 5.25rem);
+    align-self: stretch;
+
+    /*
+     * Keep satellites inside viewport — asymmetric spacing does the stagger
+     */
+
+    width: auto;
+    max-width: calc(100% - clamp(0rem, 2vw, 1.25rem));
+    margin-inline-end: clamp(0rem, 2vw, 1.75rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tea-collection-section__tile-frame:hover .tea-collection-section__tile-media,
+  .tea-collection-section__tile-media {
+    transition: none;
+  }
+
+  .tea-collection-section__tile-frame:hover .tea-collection-section__tile-media {
+    transform: scale(1.03);
+    filter:
+      brightness(0.76)
+      contrast(0.92)
+      saturate(0.64);
+  }
+
+  .tea-collection-section__ghost {
+    transition: none;
+
+    &:hover {
+      letter-spacing: 0.34em;
+    }
+  }
+}
