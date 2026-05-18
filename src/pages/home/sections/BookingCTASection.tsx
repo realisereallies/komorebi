@@ -1,38 +1,11 @@
-import { useEffect, useRef, useState, type CSSProperties } from 'react'
+import { type CSSProperties } from 'react'
+import { motion, useReducedMotion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 
+import { revealNestedContainerVariants } from '@/components/RevealSection/revealMotion'
+import { RevealItem, RevealStagger } from '@/components/RevealSection/RevealSection'
+
 import './booking-cta-section.scss'
-
-function prefersReducedMotion() {
-  return (
-    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  )
-}
-
-function useReveal() {
-  const ref = useRef<HTMLElement | null>(null)
-  const [active, setActive] = useState(() => prefersReducedMotion())
-
-  useEffect(() => {
-    const root = ref.current
-    if (!root || prefersReducedMotion()) return
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry?.isIntersecting) {
-          setActive(true)
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.14, rootMargin: '0px 0px -5% 0px' },
-    )
-
-    observer.observe(root)
-    return () => observer.disconnect()
-  }, [])
-
-  return { ref, active }
-}
 
 const MOTES = [
   { id: 'm1', left: '14%', top: '72%', size: 3.15, delay: 0 },
@@ -60,15 +33,9 @@ const MOTES = [
 ] as const
 
 export function BookingCTASection() {
-  const { ref, active } = useReveal()
-  const stateClass = active ? 'booking-cta-section--visible' : ''
-
+  const reduceMotion = useReducedMotion()
   return (
-    <section
-      ref={ref}
-      className={`booking-cta-section ${stateClass}`}
-      aria-labelledby="booking-cta-heading"
-    >
+    <section className="booking-cta-section" aria-labelledby="booking-cta-heading">
       <span className="booking-cta-section__grain" aria-hidden="true" />
       <span className="booking-cta-section__vignette" aria-hidden="true" />
       <span className="booking-cta-section__lantern" aria-hidden="true" />
@@ -90,23 +57,36 @@ export function BookingCTASection() {
         ))}
       </span>
 
-      <div className="booking-cta-section__inner">
-        <div className="booking-cta-section__content">
-          <hr className="booking-cta-section__divider" aria-hidden="true" />
-          <p className="booking-cta-section__eyebrow">RESERVATIONS</p>
-          <h2 className="booking-cta-section__title" id="booking-cta-heading">
-            Reserve a seated ritual
-          </h2>
-          <p className="booking-cta-section__description">
-            Limited placements each evening amid cedar light.
-          </p>
-          <div className="booking-cta-section__cta">
-            <Link className="booking-cta-section__btn" to="/booking">
-              Request a booking
-            </Link>
-          </div>
-        </div>
-      </div>
+      <RevealStagger className="booking-cta-section__inner">
+        <motion.div
+          className="booking-cta-section__content"
+          variants={revealNestedContainerVariants(!!reduceMotion)}
+        >
+          <RevealItem>
+            <hr className="booking-cta-section__divider" aria-hidden="true" />
+          </RevealItem>
+          <RevealItem>
+            <p className="booking-cta-section__eyebrow">RESERVATIONS</p>
+          </RevealItem>
+          <RevealItem>
+            <h2 className="booking-cta-section__title" id="booking-cta-heading">
+              Reserve a seated ritual
+            </h2>
+          </RevealItem>
+          <RevealItem>
+            <p className="booking-cta-section__description">
+              Limited placements each evening amid cedar light.
+            </p>
+          </RevealItem>
+          <RevealItem>
+            <div className="booking-cta-section__cta">
+              <Link className="booking-cta-section__btn" to="/booking">
+                Request a booking
+              </Link>
+            </div>
+          </RevealItem>
+        </motion.div>
+      </RevealStagger>
     </section>
   )
 }

@@ -1,11 +1,17 @@
-import { RitualsHeroSection } from './RitualsHeroSection'
+import { RevealSection } from '@/components/RevealSection/RevealSection'
+
 import { RitualListSection } from './RitualListSection'
+import { RitualsHeroSection } from './RitualsHeroSection'
 
 export function RitualsPage() {
   return (
     <>
-      <RitualsHeroSection />
-      <RitualListSection />
+      <RevealSection>
+        <RitualsHeroSection />
+      </RevealSection>
+      <RevealSection>
+        <RitualListSection />
+      </RevealSection>
     </>
   )
 }

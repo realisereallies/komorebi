@@ -238,21 +238,6 @@
   width: min(100%, 30rem);
   margin-inline: auto;
   translate: clamp(-0.85rem, -2.85vw, -3.25rem) 0;
-
-  transition:
-    opacity 1.9s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 1.9s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.booking-cta-section:not(.booking-cta-section--visible) .booking-cta-section__content {
-  opacity: 0;
-  transform: translate3d(0, 26px, 0);
-  will-change: opacity, transform;
-}
-
-.booking-cta-section--visible .booking-cta-section__content {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
 }
 
 .booking-cta-section__divider {
@@ -372,10 +357,6 @@
     animation: none;
     opacity: 0.54;
     transform: none;
-  }
-
-  .booking-cta-section__content {
-    transition-duration: 0.01ms;
   }
 
   .booking-cta-section__btn {

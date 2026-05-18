@@ -1,13 +1,15 @@
 import psyImg from '../../../assets/images/psy-img.jpg'
 
+import { RevealItem, RevealStagger } from '@/components/RevealSection/RevealSection'
+
 import './philosophy-section.scss'
 
 export function PhilosophySection() {
   return (
     <section className="philosophy-section" aria-labelledby="philosophy-heading">
       <div className="philosophy-section__tree-bg" aria-hidden="true" />
-      <div className="philosophy-section__inner">
-        <div className="philosophy-section__copy">
+      <RevealStagger className="philosophy-section__inner">
+        <RevealItem className="philosophy-section__copy">
           <p className="philosophy-section__label">Philosophy</p>
           <h2 id="philosophy-heading" className="philosophy-section__title">
             Tea is not consumed.
@@ -17,9 +19,9 @@ export function PhilosophySection() {
             Komorebi was created as a quiet retreat for tea rituals, stillness and intentional
             evenings.
           </p>
-        </div>
+        </RevealItem>
 
-        <figure className="philosophy-section__figure">
+        <RevealItem as="figure" className="philosophy-section__figure">
           <div className="philosophy-section__figure-frame">
             <img
               className="philosophy-section__img"
@@ -31,8 +33,8 @@ export function PhilosophySection() {
               decoding="async"
             />
           </div>
-        </figure>
-      </div>
+        </RevealItem>
+      </RevealStagger>
     </section>
   )
 }

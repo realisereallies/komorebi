@@ -1,3 +1,5 @@
+import { RevealSection } from '@/components/RevealSection/RevealSection'
+
 import { AboutHeroSection } from './AboutHeroSection'
 import { PhilosophyBlockSection } from './PhilosophyBlockSection'
 import { StorySection } from './StorySection'
@@ -5,9 +7,15 @@ import { StorySection } from './StorySection'
 export function AboutPage() {
   return (
     <>
-      <AboutHeroSection />
-      <StorySection />
-      <PhilosophyBlockSection />
+      <RevealSection>
+        <AboutHeroSection />
+      </RevealSection>
+      <RevealSection>
+        <StorySection />
+      </RevealSection>
+      <RevealSection>
+        <PhilosophyBlockSection />
+      </RevealSection>
     </>
   )
 }

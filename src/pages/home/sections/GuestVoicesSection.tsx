@@ -1,70 +1,36 @@
-import { useEffect, useRef, useState, type CSSProperties } from 'react'
+import { motion, useReducedMotion } from 'framer-motion'
+
+import { revealNestedContainerVariants } from '@/components/RevealSection/revealMotion'
+import { RevealItem, RevealStagger } from '@/components/RevealSection/RevealSection'
 
 import './guest-voices-section.scss'
 
 const VOICES = [
   {
-    id: 'placeholder-stillness',
+    id: 'voice-stillness',
     quote:
       'The room felt like dusk held still—steam braided above the cups, footsteps softened on wood, ' +
       'and the evening unspooled slowly enough to hear your own pulse.',
-    name: 'Guest name placeholder',
-    location: 'Kyoto, Japan — placeholder',
+    name: 'Rei Okada',
+    location: 'Kyoto, Japan',
   },
   {
-    id: 'placeholder-ritual',
+    id: 'voice-ritual',
     quote:
       'A quiet ritual of rinsing leaves, warmed ceramic, muted light on linen—small gestures that settle ' +
       'the nerves after long days.',
-    name: 'Second guest placeholder',
-    location: 'Portland — placeholder',
+    name: 'Eleanor Wright',
+    location: 'Portland, Oregon',
   },
 ] as const
 
-function prefersReducedMotion() {
-  return (
-    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  )
-}
-
-function useReveal() {
-  const ref = useRef<HTMLElement | null>(null)
-  const [active, setActive] = useState(() => prefersReducedMotion())
-
-  useEffect(() => {
-    const root = ref.current
-    if (!root || prefersReducedMotion()) return
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry?.isIntersecting) {
-          setActive(true)
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.12, rootMargin: '0px 0px -6% 0px' },
-    )
-
-    observer.observe(root)
-    return () => observer.disconnect()
-  }, [])
-
-  return { ref, active }
-}
-
 export function GuestVoicesSection() {
-  const { ref, active } = useReveal()
-  const stateClass = active ? 'guest-voices-section--visible' : ''
-
+  const reduceMotion = useReducedMotion()
   return (
-    <section
-      ref={ref}
-      className={`guest-voices-section ${stateClass}`}
-      aria-labelledby="guest-voices-heading"
-    >
+    <section className="guest-voices-section" aria-labelledby="guest-voices-heading">
       <div className="guest-voices-section__inner">
-        <div className="guest-voices-section__grid">
-          <header className="guest-voices-section__intro">
+        <RevealStagger className="guest-voices-section__grid">
+          <RevealItem as="header" className="guest-voices-section__intro">
             <p className="guest-voices-section__eyebrow">Guest voices</p>
             <h2 id="guest-voices-heading" className="guest-voices-section__title">
               Quiet enough to hear the kettle—and yourself.
@@ -73,15 +39,19 @@ export function GuestVoicesSection() {
               A short atmospheric placeholder note—stillness pooling in corners, kettle steam thinning the
               air, slow evenings and calm rituals drifting like incense.
             </p>
-          </header>
+          </RevealItem>
 
-          <div className="guest-voices-section__cards" role="list">
-            {VOICES.map((voice, index) => (
-              <article
+          <motion.div
+            className="guest-voices-section__cards"
+            role="list"
+            variants={revealNestedContainerVariants(!!reduceMotion)}
+          >
+            {VOICES.map((voice) => (
+              <RevealItem
                 key={voice.id}
+                as="article"
                 className="guest-voices-card"
                 role="listitem"
-                style={{ '--guest-voices-stagger': index } as CSSProperties}
               >
                 <div className="guest-voices-card__glow" aria-hidden="true" />
                 <blockquote className="guest-voices-card__quote">
@@ -98,10 +68,10 @@ export function GuestVoicesSection() {
                     <p className="guest-voices-card__location">{voice.location}</p>
                   </div>
                 </footer>
-              </article>
+              </RevealItem>
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </RevealStagger>
       </div>
     </section>
   )

@@ -1,3 +1,8 @@
+import { motion, useReducedMotion } from 'framer-motion'
+
+import { revealNestedContainerVariants } from '@/components/RevealSection/revealMotion'
+import { RevealItem, RevealStagger } from '@/components/RevealSection/RevealSection'
+
 import './atmosphere-gallery-section.scss'
 
 const GALLERY_ITEMS = [
@@ -10,29 +15,32 @@ const GALLERY_ITEMS = [
 ] as const
 
 export function AtmosphereGallerySection() {
+  const reduceMotion = useReducedMotion()
   return (
     <section
       className="atmosphere-gallery"
       aria-labelledby="atmosphere-gallery-heading"
     >
-      <div className="atmosphere-gallery__inner">
-        <header className="atmosphere-gallery__header">
+      <RevealStagger className="atmosphere-gallery__inner">
+        <RevealItem as="header" className="atmosphere-gallery__header">
           <h2 id="atmosphere-gallery-heading" className="atmosphere-gallery__title">
             Atmosphere gallery
           </h2>
           <p className="atmosphere-gallery__subtitle">
             Moss, lanterns, kettle steam — quiet scenes from the ritual.
           </p>
-        </header>
+        </RevealItem>
 
-        <div
+        <motion.div
           className="atmosphere-gallery__collage"
           role="group"
           aria-label="Atmospheric gallery images"
+          variants={revealNestedContainerVariants(!!reduceMotion)}
         >
           {GALLERY_ITEMS.map(({ key, label, variant, src }) => (
-            <figure
+            <RevealItem
               key={key}
+              as="figure"
               className={`atmosphere-gallery__tile atmosphere-gallery__tile--${variant}`}
             >
               <div className="atmosphere-gallery__tile-shell">
@@ -45,10 +53,10 @@ export function AtmosphereGallerySection() {
                 />
               </div>
               <figcaption className="atmosphere-gallery__caption">{label}</figcaption>
-            </figure>
+            </RevealItem>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </RevealStagger>
     </section>
   )
 }

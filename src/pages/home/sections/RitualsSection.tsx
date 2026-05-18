@@ -1,4 +1,8 @@
+import { motion, useReducedMotion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+
+import { revealNestedContainerVariants } from '@/components/RevealSection/revealMotion'
+import { RevealItem, RevealStagger } from '@/components/RevealSection/RevealSection'
 
 import { TeaRitualsDivider } from './TeaRitualsDivider'
 import './rituals-section.scss'
@@ -31,12 +35,13 @@ const ritualScenes = [
 ] as const
 
 export function RitualsSection() {
+  const reduceMotion = useReducedMotion()
   return (
     <section className="rituals-section" aria-labelledby="rituals-heading">
       <TeaRitualsDivider />
 
-      <div className="rituals-section__inner">
-        <header className="rituals-section__intro">
+      <RevealStagger className="rituals-section__inner">
+        <RevealItem as="header" className="rituals-section__intro">
           <p className="rituals-section__eyebrow">Rituals</p>
           <h2 id="rituals-heading" className="rituals-section__title">
             <span className="rituals-section__title-line">Evenings shaped by incense,</span>
@@ -48,11 +53,15 @@ export function RitualsSection() {
           <Link className="rituals-section__cta" to="/rituals">
             View ceremonial experiences
           </Link>
-        </header>
+        </RevealItem>
 
-        <div className="rituals-section__grid" role="list">
+        <motion.div
+          className="rituals-section__grid"
+          role="list"
+          variants={revealNestedContainerVariants(!!reduceMotion)}
+        >
           {ritualScenes.map((scene) => (
-            <article key={scene.id} className="rituals-card" role="listitem">
+            <RevealItem key={scene.id} as="article" className="rituals-card" role="listitem">
               <figure className="rituals-card__figure">
                 <div className="rituals-card__frame">
                   <img
@@ -70,10 +79,10 @@ export function RitualsSection() {
                 <p className="rituals-card__caption">{scene.caption}</p>
                 <p className="rituals-card__hint">{scene.hint}</p>
               </div>
-            </article>
+            </RevealItem>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </RevealStagger>
     </section>
   )
 }

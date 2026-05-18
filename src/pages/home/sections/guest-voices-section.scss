@@ -41,21 +41,6 @@
 
 .guest-voices-section__intro {
   max-width: 42rem;
-  transition:
-    opacity 1.85s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 1.85s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.guest-voices-section:not(.guest-voices-section--visible) .guest-voices-section__intro,
-.guest-voices-section:not(.guest-voices-section--visible) .guest-voices-card {
-  opacity: 0;
-  transform: translate3d(0, 22px, 0);
-  will-change: opacity, transform;
-}
-
-.guest-voices-section--visible .guest-voices-section__intro {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
 }
 
 .guest-voices-section__eyebrow {
@@ -121,8 +106,6 @@
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
   transition:
-    opacity 2.2s cubic-bezier(0.19, 1, 0.32, 1) calc(var(--guest-voices-stagger, 0) * 260ms),
-    transform 2.2s cubic-bezier(0.19, 1, 0.32, 1) calc(var(--guest-voices-stagger, 0) * 260ms),
     border-color 0.9s ease,
     box-shadow 0.95s ease,
     translate 0.95s ease;
@@ -130,11 +113,6 @@
   @supports not (backdrop-filter: blur(1px)) {
     background: rgb(14 17 14 / 0.72);
   }
-}
-
-.guest-voices-section--visible .guest-voices-card {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
 }
 
 .guest-voices-card:hover {
@@ -242,14 +220,6 @@
     backdrop-filter: none;
   }
 
-  .guest-voices-section:not(.guest-voices-section--visible) .guest-voices-section__intro,
-  .guest-voices-section:not(.guest-voices-section--visible) .guest-voices-card {
-    opacity: 1;
-    transform: none;
-    will-change: auto;
-  }
-
-  .guest-voices-section__intro,
   .guest-voices-card {
     transition: none;
   }

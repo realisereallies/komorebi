@@ -1,4 +1,8 @@
+import { motion, useReducedMotion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+
+import { revealNestedContainerVariants } from '@/components/RevealSection/revealMotion'
+import { RevealItem, RevealStagger } from '@/components/RevealSection/RevealSection'
 
 import './tea-collection-section.scss'
 
@@ -7,11 +11,12 @@ const cupsImg = '/img/cups.webp'
 const teaRitualImg = '/img/tea-ritual.avif'
 
 export function TeaCollectionSection() {
+  const reduceMotion = useReducedMotion()
   return (
     <section className="tea-collection-section" aria-labelledby="tea-collection-heading">
       <div className="tea-collection-section__inner">
-        <div className="tea-collection-section__layout">
-          <div className="tea-collection-section__copy">
+        <RevealStagger className="tea-collection-section__layout">
+          <RevealItem className="tea-collection-section__copy">
             <p className="tea-collection-section__eyebrow">Tea Collection</p>
             <h2 id="tea-collection-heading" className="tea-collection-section__title">
               <span className="tea-collection-section__title-line">Garden-grown leaves,</span>
@@ -26,14 +31,18 @@ export function TeaCollectionSection() {
             <Link className="tea-collection-section__ghost" to="/tea">
               Explore collection
             </Link>
-          </div>
+          </RevealItem>
 
-          <div
+          <motion.div
             className="tea-collection-section__mosaic"
             role="group"
             aria-label="Tea collection visuals"
+            variants={revealNestedContainerVariants(!!reduceMotion)}
           >
-            <figure className="tea-collection-section__tile tea-collection-section__tile--pillar">
+            <RevealItem
+              as="figure"
+              className="tea-collection-section__tile tea-collection-section__tile--pillar"
+            >
               <div className="tea-collection-section__tile-frame">
                 <img
                   className="tea-collection-section__tile-media"
@@ -44,10 +53,13 @@ export function TeaCollectionSection() {
                   sizes="(min-width: 48rem) 42vw, 100vw"
                 />
               </div>
-            </figure>
+            </RevealItem>
 
             <div className="tea-collection-section__satellites">
-              <figure className="tea-collection-section__tile tea-collection-section__tile--ritual">
+              <RevealItem
+                as="figure"
+                className="tea-collection-section__tile tea-collection-section__tile--ritual"
+              >
                 <div className="tea-collection-section__tile-frame">
                   <img
                     className="tea-collection-section__tile-media"
@@ -58,9 +70,12 @@ export function TeaCollectionSection() {
                     sizes="(min-width: 48rem) 28vw, 88vw"
                   />
                 </div>
-              </figure>
+              </RevealItem>
 
-              <figure className="tea-collection-section__tile tea-collection-section__tile--cups">
+              <RevealItem
+                as="figure"
+                className="tea-collection-section__tile tea-collection-section__tile--cups"
+              >
                 <div className="tea-collection-section__tile-frame">
                   <img
                     className="tea-collection-section__tile-media"
@@ -71,10 +86,10 @@ export function TeaCollectionSection() {
                     sizes="(min-width: 48rem) 36vw, 100vw"
                   />
                 </div>
-              </figure>
+              </RevealItem>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </RevealStagger>
       </div>
     </section>
   )
